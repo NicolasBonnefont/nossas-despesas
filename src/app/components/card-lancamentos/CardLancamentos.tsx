@@ -10,7 +10,7 @@ type cardProps = {
 function CardLancamentos({ descricao, valor, tipo }: cardProps) {
   return (
 
-    <div className={`bg-white flex w-full h-16 rounded-xl items-center p-8 ${tipo == 'saida' ? 'text-red-600' : 'text-gray-600'} cursor-pointer hover:bg-gray-200`}>
+    <div className={`bg-white font-bold flex w-full h-16 rounded-xl items-center p-8 ${tipo == 'saida' ? 'text-red-600' : 'text-green-600'} cursor-pointer hover:bg-gray-200`}>
 
       <p>{descricao}</p>
 
