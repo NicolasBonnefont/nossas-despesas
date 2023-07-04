@@ -4,11 +4,11 @@ import { FiPlusCircle } from "react-icons/fi"
 import Lancamentos from "./components/lancamentos"
 import Totais from "./components/totais"
 
-export const revalidate = 5
+export const revalidate = 30
 
 async function getLancamentos() {
   const response = await fetch(process.env.URL + '/api/lancamentos')
-  const lancamentos = await response.json()
+  const lancamentos = response.json()
 
   return lancamentos
 
@@ -16,7 +16,7 @@ async function getLancamentos() {
 
 async function getTotais() {
   const response2 = await fetch(process.env.URL + '/api/lancamentos/totais')
-  const totais = await response2.json()
+  const totais = response2.json()
 
   return totais
 }

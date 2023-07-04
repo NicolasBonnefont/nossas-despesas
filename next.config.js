@@ -1,4 +1,3 @@
-
 const nextConfig = {
   experimental: {
     serverActions: true,
@@ -6,8 +5,6 @@ const nextConfig = {
   images: {
     domains: ['http://localhost:3000/']
   },
-
-  
 
 }
 
