@@ -1,26 +1,25 @@
-import axios from 'axios'
 import Link from "next/link"
 import { FiPlusCircle } from "react-icons/fi"
 import Lancamentos from "./components/lancamentos"
 import Totais from "./components/totais"
 
-export const revalidate = 30
+
+async function getLancamentos() {
+  const response = await fetch(process.env.URL + '/api/lancamentos', { next: { revalidate: 30 } })
+  const lancamentos = response.json()
+
+  return lancamentos
+
+}
+
+async function getTotais() {
+  const response2 = await fetch(process.env.URL + '/api/lancamentos/totais', { next: { revalidate: 30 } })
+  const totais = response2.json()
+
+  return totais
+}
 
 async function Home() {
-  async function getLancamentos() {
-    const response = await fetch(process.env.URL + '/api/lancamentos', { next: { revalidate: 30 } })
-    const lancamentos = response.json()
-
-    return lancamentos
-
-  }
-
-  async function getTotais() {
-    const response2 = await fetch(process.env.URL + '/api/lancamentos/totais', { next: { revalidate: 30 } })
-    const totais = response2.json()
-
-    return totais
-  }
 
   const totais = await getTotais()
   const lancamentos = await getLancamentos()
