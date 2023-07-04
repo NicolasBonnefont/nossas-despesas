@@ -1,4 +1,3 @@
-import { ReactElement } from "react"
 import { FiArrowDownCircle, FiArrowUpCircle } from "react-icons/fi"
 
 type cardProps = {
