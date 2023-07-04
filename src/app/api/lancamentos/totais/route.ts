@@ -5,6 +5,8 @@ export async function GET() {
 
   try {
 
+    console.log('requisitado....')
+
     const entradas = await prisma.lancamentos.groupBy({
       by: ['valor'],
       _sum: {
