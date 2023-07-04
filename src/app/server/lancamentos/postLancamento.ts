@@ -21,6 +21,8 @@ async function PostLancamento({ ...dados }: lancamentos) {
 
     revalidateTag('/')
 
+    return
+
   } catch (error) {
     console.log(error)
     throw error

@@ -1,6 +1,7 @@
 'use server'
 
 import prisma from "@/db/prisma"
+import { revalidateTag } from "next/cache"
 
 async function RemoveLancamento(id: number) {
   try {
@@ -10,6 +11,8 @@ async function RemoveLancamento(id: number) {
         id
       }
     })
+
+    revalidateTag('/')
 
     return
 
