@@ -7,7 +7,7 @@ import Totais from "./components/totais"
 export const revalidate = 5
 
 async function getLancamentos() {
-  const response = await fetch('http://localhost:3000/api/lancamentos')
+  const response = await fetch(process.env.URL + '/api/lancamentos')
   const lancamentos = response.json()
 
   return lancamentos
@@ -15,7 +15,7 @@ async function getLancamentos() {
 }
 
 async function getTotais() {
-  const response2 = await fetch('http://localhost:3000/api/lancamentos/totais')
+  const response2 = await fetch(process.env.URL + '/api/lancamentos/totais')
   const totais = response2.json()
 
   return totais
