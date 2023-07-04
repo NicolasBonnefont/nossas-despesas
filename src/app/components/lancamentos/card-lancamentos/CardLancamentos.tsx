@@ -1,6 +1,7 @@
-import RemoveLancamento from "@/app/server/lancamentos/removeLancamento"
-import { Dispatch, SetStateAction } from "react"
-import { FiArrowDownCircle, FiArrowUpCircle, FiTrash2 } from "react-icons/fi"
+import RemoveLancamento from "@/app/server/lancamentos/removeLancamento";
+import { useRouter } from "next/navigation";
+import { Dispatch, SetStateAction } from "react";
+import { FiArrowDownCircle, FiArrowUpCircle, FiTrash2 } from "react-icons/fi";
 
 type lancamentosProps = {
   id: number;
@@ -23,14 +24,16 @@ type cardProps = {
 
 function CardLancamentos({ descricao, valor, tipo, id, lancamentos, setLancamentos }: cardProps) {
 
+  const router = useRouter()
+
   async function ExcluiLancamento(id: number) {
 
+    let novo_lancamentos = lancamentos.filter(lancamento => lancamento.id !== id)
+    setLancamentos(novo_lancamentos)
+
     await RemoveLancamento(id)
-      .then(response => {
-        let novo_lancamentos = lancamentos.filter(lancamento => lancamento.id !== id)
-        setLancamentos(novo_lancamentos)
-      })
       .catch(error => {
+        router.refresh()
         console.log(error)
       })
 

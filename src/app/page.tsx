@@ -3,19 +3,17 @@ import { FiPlusCircle } from "react-icons/fi"
 import Lancamentos from "./components/lancamentos"
 import Totais from "./components/totais"
 
+export const revalidate = 60 * 60 //1 hora
 
 async function getLancamentos() {
-  const response = await fetch(process.env.URL + '/api/lancamentos', { next: { revalidate: 30 } })
+  const response = await fetch(process.env.URL + '/api/lancamentos')
   const lancamentos = response.json()
-
   return lancamentos
-
 }
 
 async function getTotais() {
-  const response2 = await fetch(process.env.URL + '/api/lancamentos/totais', { next: { revalidate: 30 } })
-  const totais = response2.json()
-
+  const response = await fetch(process.env.URL + '/api/lancamentos/totais')
+  const totais = response.json()
   return totais
 }
 
