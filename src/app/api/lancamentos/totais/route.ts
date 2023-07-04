@@ -1,7 +1,7 @@
 import prisma from '@/db/prisma'
 import { NextRequest, NextResponse } from 'next/server'
 
-export async function GET(request: NextRequest) {
+export async function GET() {
 
   try {
 
@@ -30,8 +30,6 @@ export async function GET(request: NextRequest) {
 
     const totais = total_entrada - total_saida
 
-    console.log(totais)
-
     return NextResponse.json(
       {
         total_entrada,
@@ -41,6 +39,7 @@ export async function GET(request: NextRequest) {
     )
 
   } catch (error: any) {
+    console.log(error)
     return error
   }
 
