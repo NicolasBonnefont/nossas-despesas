@@ -34,7 +34,6 @@ export async function GET() {
     const totais = total_entrada - total_saida
 
     revalidatePath('/')
-    return NextResponse.json({ revalidated: true, now: Date.now() })
 
     return NextResponse.json(
       {

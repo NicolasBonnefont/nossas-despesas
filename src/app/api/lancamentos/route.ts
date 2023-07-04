@@ -10,8 +10,6 @@ export async function GET(request: NextRequest) {
     const lancamentos = await prisma.lancamentos.findMany()
 
     revalidatePath('/')
-    return NextResponse.json({ revalidated: true, now: Date.now() })
-
     return NextResponse.json(lancamentos)
 
   } catch (error) {
