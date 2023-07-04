@@ -1,6 +1,4 @@
-import Image from "next/image"
 import { FiArrowRight } from "react-icons/fi"
-import logo from '../../../../public/logo.png'
 
 function Menu() {
 

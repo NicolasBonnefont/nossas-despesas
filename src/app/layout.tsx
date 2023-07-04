@@ -3,7 +3,7 @@ import './globals.css'
 
 export const metadata = {
   title: 'Minhas Despesas',
-  description: 'Sistema de gestão de Gastos',
+  description: 'Sistema de gestão de Despesas',
 }
 
 export default function RootLayout({
