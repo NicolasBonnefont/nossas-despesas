@@ -1,4 +1,5 @@
 import prisma from '@/db/prisma'
+import { revalidatePath } from 'next/cache'
 import { NextResponse } from 'next/server'
 
 export async function GET() {
@@ -31,6 +32,9 @@ export async function GET() {
     const total_saida = Number(saidas[0]?._sum.valor) ? Number(saidas[0]?._sum.valor) : 0
 
     const totais = total_entrada - total_saida
+
+    revalidatePath('/')
+    return NextResponse.json({ revalidated: true, now: Date.now() })
 
     return NextResponse.json(
       {
