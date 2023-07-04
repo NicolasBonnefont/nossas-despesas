@@ -7,6 +7,8 @@ const nextConfig = {
     domains: ['http://localhost:3000/']
   },
 
+  
+
 }
 
 module.exports = nextConfig
