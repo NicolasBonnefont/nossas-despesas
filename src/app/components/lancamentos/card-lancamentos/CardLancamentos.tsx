@@ -33,7 +33,7 @@ function CardLancamentos({ descricao, valor, tipo, id, lancamentos, setLancament
 
     await RemoveLancamento(id)
       .catch(error => {
-        router.refresh()
+        location.reload()
         console.log(error)
       })
   }
