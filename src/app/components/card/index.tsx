@@ -3,7 +3,7 @@ import { ReactElement } from "react";
 type cardProps = {
   titulo: string
   Icone: ReactElement,
-  valor: string
+  valor?: number
 }
 
 function Card({ Icone, titulo, valor }: cardProps) {

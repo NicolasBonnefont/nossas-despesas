@@ -1,9 +1,41 @@
+'use client'
+
 import Image from "next/image"
 import Link from "next/link"
 import { FiArrowLeft } from "react-icons/fi"
 import money from '../../../public/novo-lancamento/money.png'
+import { useForm, SubmitHandler } from "react-hook-form"
+import PostLancamento from "../server/lancamentos/postLancamento"
+import { useRouter } from "next/navigation"
+import { BounceLoader } from "react-spinners"
+import { useEffect, useState } from "react"
+import { lancamentos } from "@prisma/client"
 
 function NovoLancamento() {
+
+  const { register, handleSubmit, watch, formState: { errors } } = useForm<lancamentos>();
+
+  const [isLoading, setIsLoading] = useState(false)
+
+  const router = useRouter()
+
+  const onSubmit: SubmitHandler<lancamentos> = async (data) => {
+
+    setIsLoading(true)
+
+    await PostLancamento(data)
+      .then(response => {
+        router.push('/')
+      })
+      .catch(error => {
+        console.log(error)
+      })
+      .then(() => {
+        setIsLoading(false)
+      })
+
+  }
+
   return (
 
     <div className="flex flex-1 flex-col w-full h-full p-10 px-32 gap-8 text-white">
@@ -12,24 +44,34 @@ function NovoLancamento() {
 
       <div className="flex flex-1 w-full h-full items-center justify-evenly">
 
-        <form className="flex flex-1 flex-col max-w-2xl gap-2 ">
+        <form onSubmit={handleSubmit(onSubmit)} className="flex flex-1 flex-col max-w-2xl gap-2 ">
           <span>Descrição:</span>
-          <input className="rounded-xl h-16 p-2 text-black" placeholder="Descrição..." />
+          <input {...register('descricao')} className="rounded-xl h-16 p-2 text-black" placeholder="Descrição..." />
 
           <span>Valor:</span>
-          <input className="rounded-xl h-16 p-2 text-black" placeholder="Valor..." />
+          <input {...register('valor')} className="rounded-xl h-16 p-2 text-black" placeholder="Valor..." />
 
           <span>Parcelas:</span>
-          <input className="rounded-xl h-16 p-2 text-black" placeholder="Valor..." />
+          <input {...register('total_parcelas')} className="rounded-xl h-16 p-2 text-black" placeholder="Valor..." />
+
+          <div className="flex w-full items-center gap-8 h-auto">
+            <span>Repete todos os meses:</span>
+            <input {...register('repete_todos_meses')} type="checkbox" className="rounded-2xl h-8 p-2 text-black cursor-pointer"/>
+          </div>
 
           <span>Selecione o Tipo:</span>
-          <select className="rounded-xl h-16 p-2 text-black cursor-pointer" placeholder="Selecione uma opção">
+          <select {...register('tipo')} className="rounded-xl h-16 p-2 text-black cursor-pointer" placeholder="Selecione uma opção">
             <option value="saida">Saida</option>
             <option value="entrada">Entrada</option>
           </select>
 
-          <button className="rounded-xl h-16 bg-green-600 mt-8 font-bold">
-            Salvar
+          <button className="flex items-center justify-center rounded-xl h-16 bg-green-600 mt-8 font-bold">
+            {
+              isLoading ?
+                <BounceLoader color="white" size='16' />
+                :
+                'Salvar'
+            }
           </button>
 
         </form>

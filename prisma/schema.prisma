@@ -1,0 +1,25 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model lancamentos {
+  id             Int             @id @default(autoincrement())
+  descricao      String
+  valor          Decimal
+  total_parcelas Int
+  parcela_atual   Int
+  created_at     DateTime        @default(now())
+  updated_at     DateTime        @updatedAt
+  tipo           tipo_lancamento
+  repete_todos_meses Boolean
+}
+
+enum tipo_lancamento {
+  entrada
+  saida
+}
