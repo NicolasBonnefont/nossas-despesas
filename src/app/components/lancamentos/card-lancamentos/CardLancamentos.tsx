@@ -29,14 +29,13 @@ function CardLancamentos({ descricao, valor, tipo, id, lancamentos, setLancament
   async function ExcluiLancamento(id: number) {
 
     let novo_lancamentos = lancamentos.filter(lancamento => lancamento.id !== id)
-    setLancamentos(novo_lancamentos)
+    setLancamentos(e => novo_lancamentos)
 
     await RemoveLancamento(id)
       .catch(error => {
         router.refresh()
         console.log(error)
       })
-
   }
 
   return (
