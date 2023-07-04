@@ -19,6 +19,8 @@ async function PostLancamento({ ...dados }: lancamentos) {
       }
     })
 
+    revalidateTag('/')
+
     return NextResponse.json({ revalidated: true, now: Date.now() })
 
   } catch (error) {
