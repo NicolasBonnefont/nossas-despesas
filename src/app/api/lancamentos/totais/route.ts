@@ -25,7 +25,7 @@ export async function GET() {
       }
     })
 
-    const total_entrada = Number(entradas[0]._sum.valor) ? Number(entradas[0]._sum.valor) : 0
+    const total_entrada = Number(entradas[0]?._sum.valor) ? Number(entradas[0]?._sum.valor) : 0
     const total_saida = Number(saidas[0]?._sum.valor) ? Number(saidas[0]?._sum.valor) : 0
 
     const totais = total_entrada - total_saida
