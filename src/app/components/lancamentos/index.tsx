@@ -1,6 +1,5 @@
 'use client'
 
-import { BounceLoader } from "react-spinners";
 import CardLancamentos from "./card-lancamentos/CardLancamentos";
 
 type props = {
