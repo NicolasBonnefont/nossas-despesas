@@ -24,21 +24,26 @@ async function Home() {
 
   return (
 
-    <div className="flex flex-1 flex-col w-full h-full p-10 px-32 gap-4">
+    <div className="flex flex-1 w-full h-full justify-center ">
 
-      <Totais totais={totais} />
+      <div className="flex flex-col  w-[1300px]">
 
-      <div className="flex justify-between items-center  text-white font-bold p-6">
-        <p className="">Lançamento do mês:</p>
+        <Totais totais={totais} />
 
-        <Link href="/novo-lancamento" className=" flex items-center gap-2 p-4  text-black  rounded-lg shadow-md bg-white hover:bg-gray-100">
-          Novo Lançamento
-          <FiPlusCircle />
-        </Link>
+        <div className="flex justify-between items-center  text-white font-bold p-6 text-md">
+          <p className="">Lançamento do mês:</p>
+
+          <Link href="/novo-lancamento"
+            className=" flex items-center gap-2 p-4 text-sm text-white font-extrabold bg-green-500  rounded-lg shadow-md hover:bg-green-400">
+            Novo Lançamento
+            <FiPlusCircle />
+          </Link>
+
+        </div>
+
+        <Lancamentos lancamentos={lancamentos} />
 
       </div>
-
-      <Lancamentos lancamentos={lancamentos} />
 
     </div>
   )

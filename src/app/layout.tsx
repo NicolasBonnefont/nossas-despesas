@@ -13,7 +13,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="pt-br">
-      <body className=' font-Poppins flex flex-1 flex-col bg-gray-900 w-full h-screen '>
+      <body className='font-Poppins flex flex-1 flex-col bg-gray-900 w-full h-screen '>
         <Menu />
         {children}
       </body>

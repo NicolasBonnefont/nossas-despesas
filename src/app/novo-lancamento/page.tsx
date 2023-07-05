@@ -38,7 +38,7 @@ function NovoLancamento() {
 
   return (
 
-    <div className="flex flex-1 flex-col w-full h-full p-10 px-32 gap-8 text-white">
+    <div className="flex flex-1 flex-col w-full h-full md:p-10 p-4 md:px-32 gap-8 text-white">
 
       <Link className=" flex items-center gap-2 hover:underline-1 hover:underline w-20" href="/"><FiArrowLeft /> voltar</Link>
 
@@ -56,7 +56,7 @@ function NovoLancamento() {
 
           <div className="flex w-full items-center gap-8 h-auto">
             <span>Repete todos os meses:</span>
-            <input {...register('repete_todos_meses')} type="checkbox" className="rounded-2xl h-8 p-2 text-black cursor-pointer"/>
+            <input {...register('repete_todos_meses')} type="checkbox" className="rounded-2xl h-8 p-2 text-black cursor-pointer" />
           </div>
 
           <span>Selecione o Tipo:</span>
@@ -76,11 +76,13 @@ function NovoLancamento() {
 
         </form>
 
-        <Image
-          src={money}
-          alt='Imagem representando dinhero'
-          width={450}
-        />
+        <div className="max-md:hidden">
+          <Image
+            src={money}
+            alt='Imagem representando dinhero'
+            width={450}
+          />
+        </div>
       </div>
 
     </div>

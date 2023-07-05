@@ -24,8 +24,6 @@ type cardProps = {
 
 function CardLancamentos({ descricao, valor, tipo, id, lancamentos, setLancamentos }: cardProps) {
 
-  const router = useRouter()
-
   async function ExcluiLancamento(id: number) {
 
     let novo_lancamentos = lancamentos.filter(lancamento => lancamento.id !== id)

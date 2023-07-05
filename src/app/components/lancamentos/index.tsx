@@ -34,11 +34,10 @@ function Lancamentos({ lancamentos }: props) {
         ))
       }
 
-      <div className="flex items-center gap-6">
-        <p className="text-white">Loading</p>
-        <BounceLoader color="white" />
-      </div>
-
+      {
+        !lancamentos[0] &&
+        <span className="text-white">Sem lançamentos 😉</span>
+      }
 
     </div>
 

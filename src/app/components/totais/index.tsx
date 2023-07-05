@@ -14,7 +14,7 @@ type totaisProps = {
 function Totais({ totais }: totaisProps) {
 
   return (
-    <div className="flex justify-around">
+    <div className="flex justify-evenly max-xl:flex-wrap gap-4">
       <Card
         titulo='Entrada'
         valor={totais?.total_entrada}
