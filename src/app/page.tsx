@@ -3,7 +3,7 @@ import { FiPlusCircle } from "react-icons/fi"
 import Lancamentos from "./components/lancamentos"
 import Totais from "./components/totais"
 
-export const revalidate = 60 
+export const revalidate = 10
 
 async function getLancamentos() {
   const response = await fetch(process.env.URL + '/api/lancamentos')

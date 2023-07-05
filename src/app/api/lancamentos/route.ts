@@ -1,7 +1,7 @@
 import prisma from '@/db/prisma'
 import { NextRequest, NextResponse } from 'next/server'
 
-export const revalidate = 60 
+export const revalidate = 10
 
 export async function GET(request: NextRequest) {
 

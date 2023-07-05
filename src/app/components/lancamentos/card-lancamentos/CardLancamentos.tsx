@@ -1,5 +1,4 @@
 import RemoveLancamento from "@/app/server/lancamentos/removeLancamento";
-import { useRouter } from "next/navigation";
 import { Dispatch, SetStateAction } from "react";
 import { FiArrowDownCircle, FiArrowUpCircle, FiTrash2 } from "react-icons/fi";
 
@@ -26,8 +25,7 @@ function CardLancamentos({ descricao, valor, tipo, id, lancamentos, setLancament
 
   async function ExcluiLancamento(id: number) {
 
-    let novo_lancamentos = lancamentos.filter(lancamento => lancamento.id !== id)
-    setLancamentos(e => novo_lancamentos)
+    setLancamentos(old => old.filter(lancamento => lancamento.id !== id))
 
     await RemoveLancamento(id)
       .catch(error => {
@@ -47,7 +45,7 @@ function CardLancamentos({ descricao, valor, tipo, id, lancamentos, setLancament
         <p>{descricao}</p>
 
       </div>
-
+          
       <div className="ml-auto flex items-center gap-4" >
         <p>R$ {valor}</p>
         {

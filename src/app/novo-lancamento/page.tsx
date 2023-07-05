@@ -1,15 +1,15 @@
 'use client'
 
+import { lancamentos } from "@prisma/client"
 import Image from "next/image"
 import Link from "next/link"
-import { FiArrowLeft } from "react-icons/fi"
-import money from '../../../public/novo-lancamento/money.png'
-import { useForm, SubmitHandler } from "react-hook-form"
-import PostLancamento from "../server/lancamentos/postLancamento"
 import { useRouter } from "next/navigation"
+import { useState } from "react"
+import { SubmitHandler, useForm } from "react-hook-form"
+import { FiArrowLeft } from "react-icons/fi"
 import { BounceLoader } from "react-spinners"
-import { useEffect, useState } from "react"
-import { lancamentos } from "@prisma/client"
+import money from '../../../public/novo-lancamento/money.png'
+import PostLancamento from "../server/lancamentos/postLancamento"
 
 function NovoLancamento() {
 
@@ -49,7 +49,9 @@ function NovoLancamento() {
           <input {...register('descricao')} className="rounded-xl h-16 p-2 text-black" placeholder="Descrição..." />
 
           <span>Valor:</span>
-          <input {...register('valor')} className="rounded-xl h-16 p-2 text-black" placeholder="Valor..." />
+          <input {...register('valor',{
+            valueAsNumber:true
+          })} className="rounded-xl h-16 p-2 text-black" placeholder="Valor..." />
 
           <span>Parcelas:</span>
           <input {...register('total_parcelas')} className="rounded-xl h-16 p-2 text-black" placeholder="Valor..." />
