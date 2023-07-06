@@ -1,12 +1,20 @@
 'use server'
 
-import prisma from "@/db/prisma"
-import { lancamentos } from "@prisma/client"
-import { revalidateTag } from "next/cache"
+import { authOptions } from "@/app/api/auth/[...nextauth]/route";
+import prisma from "@/db/prisma";
+import { lancamentos } from "@prisma/client";
+import { getServerSession } from "next-auth";
+import { revalidateTag } from "next/cache";
 
 async function PostLancamento({ ...dados }: lancamentos) {
 
   try {
+
+    const data = await getServerSession(authOptions);
+
+    console.log('??'+data?.user?.email)
+
+    const email = data?.user?.email!
 
     await prisma.lancamentos.create({
       data: {
@@ -16,7 +24,7 @@ async function PostLancamento({ ...dados }: lancamentos) {
         total_parcelas: 1,
         valor: dados.valor,
         repete_todos_meses: dados.repete_todos_meses,
-        email_cliente: dados.email_cliente
+        email_cliente: email
       }
     })
 

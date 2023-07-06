@@ -1,7 +1,7 @@
 import NextAuth from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
 
-const handler = NextAuth({
+export const authOptions = {
   providers: [
     GoogleProvider({
       clientId: "853148335914-eqe8jsarp08bvvmvd4nl023k9r54ae4p.apps.googleusercontent.com",
@@ -17,10 +17,12 @@ const handler = NextAuth({
   ],
   pages: {
     signIn: "/signin",
-    signOut:"/signout",
-    error:"/"
+    signOut: "/signout",
+    error: "/"
   }
 
-})
+}
+
+const handler = NextAuth(authOptions)
 
 export { handler as GET, handler as POST };

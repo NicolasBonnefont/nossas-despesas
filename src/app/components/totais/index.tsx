@@ -2,15 +2,21 @@ import { FiArrowDownCircle, FiArrowUpCircle, FiDollarSign } from "react-icons/fi
 import Card from "../card"
 
 type totaisProps = {
-  totais: {
-    total_entrada: number,
-    total_saida: number
-    total: number
-  }
+  total_entrada: number,
+  total_saida: number
+  total: number
+}
+export const revalidate = 60
 
+async function getTotais() {
+  const response = await fetch(process.env.URL + '/api/lancamentos/totais')
+  const { ...totais }: totaisProps = await response.json()
+  return totais
 }
 
-function Totais({ totais }: totaisProps) {
+async function Totais() {
+
+  const totais = await getTotais()
 
   return (
     <div className="flex justify-evenly max-xl:flex-wrap gap-4">

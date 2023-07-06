@@ -1,13 +1,17 @@
 
-import prisma from '@/db/prisma'
-import { NextRequest, NextResponse } from 'next/server'
+import prisma from '@/db/prisma';
+import { getServerSession } from 'next-auth';
+import { NextRequest, NextResponse } from 'next/server';
+import { authOptions } from '../../auth/[...nextauth]/route';
 
-export const revalidate = 60
+export const revalidate = 1
 
 export async function GET(request: NextRequest) {
 
   try {
-    const email = request.nextUrl.searchParams.get('email')!
+    const data = await getServerSession(authOptions);
+
+    const email = data?.user?.email!
 
     const entradas = await prisma.lancamentos.aggregate({
       _sum: {

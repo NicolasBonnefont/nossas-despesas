@@ -1,54 +1,13 @@
-'use client'
+
 import Link from "next/link"
-import { useContext, useEffect, useState } from "react"
 import { FiPlusCircle } from "react-icons/fi"
 import Lancamentos from "./components/lancamentos"
-import { EmailContexto } from "./components/Providers/EmailProvider"
 import Totais from "./components/totais"
 
-export const revalidate = 60
 
-async function getLancamentos(email: string) {
-  const response = await fetch(process.env.URL + '/api/lancamentos?email=' + email, { next: { revalidate: 60 } })
-  const lancamentos = response.json()
-  return lancamentos
-}
+export const revalidate = 1
 
-async function getTotais(email: string) {
-  const response = await fetch(process.env.URL + '/api/lancamentos/totais?email=' + email, { next: { revalidate: 60 } })
-  const totais = response.json()
-  return totais
-}
-
-function Home() {
-
-  const [totais, setTotais] = useState<any>()
-  const [lancamentos, setLancamentos] = useState<any>()
-
-  const { email, status } = useContext(EmailContexto)
-
-  async function CarregaDados(email: string) {
-
-    await Promise.all([])
-    const totais = await getTotais(email)
-    const lancamentos = await getLancamentos(email)
-
-    setTotais(totais)
-    setLancamentos(lancamentos)
-
-  }
-
-  useEffect(() => {
-
-    if (status !== 'loading' || !status) {
-
-      if (email) {
-        CarregaDados(email)
-      }
-
-    }
-
-  }, [email])
+async function Home() {
 
   return (
 
@@ -56,7 +15,7 @@ function Home() {
 
       <div className="flex flex-col  w-[1300px]">
 
-        <Totais totais={totais} />
+        <Totais />
 
         <div className="flex justify-between items-center  text-white font-bold p-6 text-md">
           <p className="">Lançamento do mês:</p>
@@ -69,7 +28,8 @@ function Home() {
 
         </div>
 
-        <Lancamentos lancamentos={lancamentos} />
+        <Lancamentos />
+
 
       </div>
 

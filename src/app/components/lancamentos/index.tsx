@@ -1,26 +1,41 @@
-'use client'
-
 import CardLancamentos from "./card-lancamentos/CardLancamentos";
 
 type props = {
-  lancamentos: {
-    descricao: string;
-    valor: number
-    total_parcelas: number;
-    parcela_atual: number;
-    tipo: 'entrada' | 'saida'
-    repete_todos_meses: boolean;
-    id: number
-  }[]
+  descricao: string;
+  valor: number
+  total_parcelas: number;
+  parcela_atual: number;
+  tipo: 'entrada' | 'saida'
+  repete_todos_meses: boolean;
+  id: number
 }
 
-function Lancamentos({ lancamentos }: props) {
+export const revalidate = 1
+
+async function getLancamentos() {
+  try {
+    const response = await fetch(process.env.URL + '/api/lancamentos')
+    const { ...lancamentos }: props[] = await response.json()
+    return lancamentos
+
+    console.log('??' + lancamentos)
+
+  } catch (error) {
+    console.log(error)
+    return []
+  }
+}
+
+async function Lancamentos() {
+
+  const lancamentos = await getLancamentos()
 
   return (
     <div className="flex flex-col items-center gap-2 max-h-[60vh] overflow-auto p-6">
 
       {
-        lancamentos&& lancamentos.map(lancamento => (
+        lancamentos.length > 0 && lancamentos?.map(lancamento => (
+
           <CardLancamentos
             key={lancamento.id}
             id={lancamento.id}
@@ -34,7 +49,7 @@ function Lancamentos({ lancamentos }: props) {
       }
 
       {
-        lancamentos &&!lancamentos[0] &&
+        lancamentos && !lancamentos[0] &&
         <span className="text-white">Sem lançamentos 😉</span>
       }
 
