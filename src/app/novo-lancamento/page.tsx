@@ -48,7 +48,9 @@ function NovoLancamento() {
 
     <div className="flex flex-1 flex-col w-full h-full md:p-10 p-4 md:px-32 gap-8 text-white">
 
-      <Link className=" flex items-center gap-2 hover:underline-1 hover:underline w-20" href="/"><FiArrowLeft /> voltar</Link>
+      <Link className=" flex items-center gap-2 hover:underline-1 hover:underline w-20" href="/">
+        <FiArrowLeft />voltar
+      </Link>
 
       <div className="flex flex-1 w-full h-full items-center justify-evenly">
 
