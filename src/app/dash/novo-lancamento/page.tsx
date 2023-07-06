@@ -8,9 +8,9 @@ import { useState } from "react"
 import { SubmitHandler, useForm } from "react-hook-form"
 import { FiArrowLeft } from "react-icons/fi"
 import { BounceLoader } from "react-spinners"
-import money from '../../../public/novo-lancamento/money.png'
-import Menu from "../components/menu"
-import PostLancamento from "../server/lancamentos/postLancamento"
+import Menu from "../../components/menu"
+import PostLancamento from "../../server/lancamentos/postLancamento"
+import money from '../../../../public/novo-lancamento/money.png'
 
 function NovoLancamento() {
 
@@ -40,7 +40,7 @@ function NovoLancamento() {
   return (
 
     <>
-      <Menu />
+
       <div className="flex flex-1 flex-col w-full h-full md:p-10 p-4 md:px-32 gap-8 text-white">
 
         <Link className=" flex items-center gap-2 hover:underline-1 hover:underline w-20" href="/">

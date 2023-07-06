@@ -1,7 +1,7 @@
 import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 import { getServerSession } from "next-auth";
-import { redirect } from "next/dist/server/api-utils";
 import Image from "next/image";
+import { redirect } from "next/navigation";
 import BtnDeslogar from "./BtnDeslogar";
 import BtnLogar from "./BtnLogar";
 
@@ -9,8 +9,12 @@ async function Menu() {
 
   const data = await getServerSession(authOptions)
 
+  if (!data) {
+    redirect('/login')
+  }
+
   return (
-    <menu className="flex w-full h-28 px-32 max-sm:p-6">
+    <menu className="flex  w-full h-28 px-32 ">
       {
 
         data ?

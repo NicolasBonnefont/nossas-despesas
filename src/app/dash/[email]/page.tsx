@@ -19,8 +19,6 @@ async function Logado({ params }: { params: { email: string } }) {
 
   return (
     <>
-      <Menu />
-
       <div className="flex flex-1 w-full h-full justify-center my-auto 2xl:mt-20">
 
         <div className="flex flex-col  w-[1300px]">
@@ -30,7 +28,7 @@ async function Logado({ params }: { params: { email: string } }) {
           <div className="flex justify-between items-center  text-white font-bold p-6 text-md">
             <p className="">Lançamento do mês:</p>
 
-            <Link href="/novo-lancamento"
+            <Link href="/dash/novo-lancamento"
               className=" flex items-center gap-2 p-4 text-sm text-white font-extrabold bg-green-500  rounded-lg shadow-md hover:bg-green-400">
               Novo Lançamento
               <FiPlusCircle />
