@@ -1,5 +1,5 @@
+'use client'
 import RemoveLancamento from "@/app/server/lancamentos/removeLancamento";
-import { Dispatch, SetStateAction } from "react";
 import { FiArrowDownCircle, FiArrowUpCircle, FiTrash2 } from "react-icons/fi";
 
 type lancamentosProps = {
@@ -17,15 +17,12 @@ type cardProps = {
   descricao: string,
   valor: string
   tipo: 'entrada' | 'saida'
-  setLancamentos: Dispatch<SetStateAction<lancamentosProps[]>>
   lancamentos: lancamentosProps[]
 }
 
-function CardLancamentos({ descricao, valor, tipo, id, lancamentos, setLancamentos }: cardProps) {
+function CardLancamentos({ descricao, valor, tipo, id }: cardProps) {
 
   async function ExcluiLancamento(id: number) {
-
-    setLancamentos(old => old.filter(lancamento => lancamento.id !== id))
 
     await RemoveLancamento(id)
       .catch(error => {
@@ -45,7 +42,7 @@ function CardLancamentos({ descricao, valor, tipo, id, lancamentos, setLancament
         <p>{descricao}</p>
 
       </div>
-          
+
       <div className="ml-auto flex items-center gap-4" >
         <p>R$ {valor}</p>
         {

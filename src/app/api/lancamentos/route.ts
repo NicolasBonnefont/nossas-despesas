@@ -19,6 +19,8 @@ export async function GET(request: NextRequest) {
       }
     })
 
+    console.log(lancamentos)
+
     return NextResponse.json(lancamentos)
 
   } catch (error) {
