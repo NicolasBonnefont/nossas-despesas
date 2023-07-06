@@ -7,6 +7,9 @@ import { authOptions } from '../auth/[...nextauth]/route';
 export async function GET(request: NextRequest) {
 
   try {
+
+    console.log('SERVER REQUISITADO...')
+
     const data = await getServerSession(authOptions);
 
     const email = data?.user?.email!
@@ -17,7 +20,6 @@ export async function GET(request: NextRequest) {
       }
     })
 
-    console.log(lancamentos)
 
     return NextResponse.json(lancamentos)
 
