@@ -14,7 +14,7 @@ export const revalidate = 60
 
 async function getLancamentos() {
   try {
-    const response = await fetch(process.env.URL + '/api/lancamentos')
+    const response = await fetch(process.env.URL + '/api/lancamentos', { next: { revalidate: 60 } })
     const lancamentos = await response.json()
     return lancamentos
 
