@@ -12,8 +12,6 @@ async function PostLancamento({ ...dados }: lancamentos) {
 
     const data = await getServerSession(authOptions);
 
-    console.log('??'+data?.user?.email)
-
     const email = data?.user?.email!
 
     await prisma.lancamentos.create({

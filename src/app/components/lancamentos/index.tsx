@@ -31,8 +31,6 @@ async function Lancamentos() {
   return (
     <div className="flex flex-col items-center gap-2 max-h-[60vh] overflow-auto p-6">
 
-      <p>?</p>
-
       {
         lancamentos.length > 0 && lancamentos?.map(lancamento => (
 
