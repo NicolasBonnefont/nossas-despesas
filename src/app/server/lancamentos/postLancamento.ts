@@ -3,7 +3,6 @@
 import prisma from "@/db/prisma"
 import { lancamentos } from "@prisma/client"
 import { revalidateTag } from "next/cache"
-import { cookies } from 'next/headers'
 
 async function PostLancamento({ ...dados }: lancamentos) {
 
