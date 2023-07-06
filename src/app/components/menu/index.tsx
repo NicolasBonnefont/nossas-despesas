@@ -10,7 +10,7 @@ async function Menu() {
   const data = await getServerSession(authOptions)
 
   return (
-    <menu className="flex  w-full h-28 px-32 ">
+    <menu className="flex w-full h-28 px-32 max-sm:p-6">
       {
 
         data ?
