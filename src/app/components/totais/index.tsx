@@ -9,7 +9,7 @@ type totaisProps = {
 export const revalidate = 60
 
 async function getTotais() {
-  const response = await fetch(process.env.URL + '/api/lancamentos/totais', { next: { revalidate: 60 } })
+  const response = await fetch(process.env.URL + '/api/lancamentos/totais', { next: { revalidate } })
   const { ...totais }: totaisProps = await response.json()
   return totais
 }
