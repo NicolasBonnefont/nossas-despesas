@@ -21,7 +21,7 @@ async function PostLancamento({ ...dados }: lancamentos) {
         parcela_atual: 1,
         total_parcelas: 1,
         valor: dados.valor,
-        repete_todos_meses: dados.repete_todos_meses,
+        repete_todos_meses: false,
         email_cliente: email
       }
     })

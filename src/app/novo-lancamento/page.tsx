@@ -4,17 +4,14 @@ import { lancamentos } from "@prisma/client"
 import Image from "next/image"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
-import { useContext, useState } from "react"
+import { useState } from "react"
 import { SubmitHandler, useForm } from "react-hook-form"
 import { FiArrowLeft } from "react-icons/fi"
 import { BounceLoader } from "react-spinners"
 import money from '../../../public/novo-lancamento/money.png'
-import { EmailContexto } from "../components/Providers/EmailProvider"
 import PostLancamento from "../server/lancamentos/postLancamento"
 
 function NovoLancamento() {
-
-  const { email } = useContext(EmailContexto)
 
   const { register, handleSubmit, watch, formState: { errors } } = useForm<lancamentos>();
 
@@ -26,12 +23,7 @@ function NovoLancamento() {
 
     setIsLoading(true)
 
-    const dados = {
-      ...data,
-      email_cliente: email
-    }
-
-    await PostLancamento(dados)
+    await PostLancamento(data)
       .then(response => {
         router.push('/')
       })
@@ -52,9 +44,9 @@ function NovoLancamento() {
         <FiArrowLeft />voltar
       </Link>
 
-      <div className="flex flex-1 w-full h-full items-center justify-evenly">
+      <div className="flex flex-1 w-full h-full items-center justify-evenly max-sm:flex-col-reverse ">
 
-        <form onSubmit={handleSubmit(onSubmit)} className="flex flex-1 flex-col max-w-2xl gap-2 ">
+        <form onSubmit={handleSubmit(onSubmit)} className="flex flex-1 flex-col max-w-2xl max-sm:w-full gap-2 ">
           <span>Descrição:</span>
           <input {...register('descricao')} className="rounded-xl h-16 p-2 text-black" placeholder="Descrição..." />
 
@@ -63,10 +55,10 @@ function NovoLancamento() {
             valueAsNumber: true
           })} className="rounded-xl h-16 p-2 text-black" placeholder="Valor..." />
 
-  {/*         <span>Parcelas:</span>
+          {/*         <span>Parcelas:</span>
           <input {...register('total_parcelas')} className="rounded-xl h-16 p-2 text-black" placeholder="Valor..." />
  */}
-{/*           <div className="flex w-full items-center gap-8 h-auto">
+          {/*           <div className="flex w-full items-center gap-8 h-auto">
             <span>Repete todos os meses:</span>
             <input {...register('repete_todos_meses')} type="checkbox" className="rounded-2xl h-8 p-2 text-black cursor-pointer" />
           </div>
@@ -88,13 +80,13 @@ function NovoLancamento() {
 
         </form>
 
-        <div className="max-md:hidden">
-          <Image
-            src={money}
-            alt='Imagem representando dinhero'
-            width={450}
-          />
-        </div>
+
+        <Image
+          src={money}
+          alt='Imagem representando dinhero'
+          width={450}
+        />
+
       </div>
 
     </div>
