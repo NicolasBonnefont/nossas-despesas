@@ -1,22 +1,22 @@
-
+import { authOptions } from "@/app/api/auth/[...nextauth]/route"
+import Lancamentos from "@/app/components/lancamentos"
+import Totais from "@/app/components/totais"
 import { getServerSession } from "next-auth"
 import Link from "next/link"
 import { redirect } from "next/navigation"
 import { FiPlusCircle } from "react-icons/fi"
-import { authOptions } from "./api/auth/[...nextauth]/route"
-import Lancamentos from "./components/lancamentos"
-import Totais from "./components/totais"
 
-async function Home() {
+export const revalidate = 60
+
+async function Logado({ params }: { params: { email: string } }) {
 
   const session = await getServerSession(authOptions)
 
-  if (session) {
-    redirect('/dash/' + session.user?.email)
+  if (!session) {
+    redirect('/')
   }
 
   return (
-
     <div className="flex flex-1 w-full h-full justify-center ">
 
       <div className="flex flex-col  w-[1300px]">
@@ -36,11 +36,11 @@ async function Home() {
 
         <Lancamentos />
 
-
       </div>
 
     </div>
   )
+
 }
 
-export default Home
+export default Logado

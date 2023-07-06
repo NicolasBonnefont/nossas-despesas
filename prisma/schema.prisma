@@ -9,7 +9,7 @@ datasource db {
 
 model lancamentos {
   id                 Int                 @id @default(autoincrement())
-  email_cliente      String              
+  email_cliente      String
   descricao          String
   valor              Decimal
   total_parcelas     Int
@@ -19,6 +19,19 @@ model lancamentos {
   tipo               tipo_lancamento
   repete_todos_meses Boolean
   emails_permitidos  emails_permitidos[]
+  usuario            usuario?            @relation(fields: [id_usuario], references: [id])
+  id_usuario         Int?
+}
+
+model usuario {
+  id    Int    @id @default(autoincrement())
+  nome  String
+  email String
+
+  lancamentos lancamentos[]
+
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
 }
 
 model emails_permitidos {

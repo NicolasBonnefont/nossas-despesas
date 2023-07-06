@@ -33,7 +33,6 @@ async function Lancamentos() {
 
       {
         lancamentos.length > 0 && lancamentos?.map(lancamento => (
-
           <CardLancamentos
             key={lancamento.id}
             id={lancamento.id}
