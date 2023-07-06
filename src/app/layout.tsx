@@ -1,10 +1,9 @@
-import Menu from './components/menu'
 import Provider from './components/Providers/Provider'
 import './globals.css'
 
 export const metadata = {
   title: 'Minhas Despesas',
-  description: 'Sistema de gestão de Despesas',
+  description: 'Sistema de gestão de despesas pessoais',
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

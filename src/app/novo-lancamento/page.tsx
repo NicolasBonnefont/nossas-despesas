@@ -63,14 +63,14 @@ function NovoLancamento() {
             valueAsNumber: true
           })} className="rounded-xl h-16 p-2 text-black" placeholder="Valor..." />
 
-          <span>Parcelas:</span>
+  {/*         <span>Parcelas:</span>
           <input {...register('total_parcelas')} className="rounded-xl h-16 p-2 text-black" placeholder="Valor..." />
-
-          <div className="flex w-full items-center gap-8 h-auto">
+ */}
+{/*           <div className="flex w-full items-center gap-8 h-auto">
             <span>Repete todos os meses:</span>
             <input {...register('repete_todos_meses')} type="checkbox" className="rounded-2xl h-8 p-2 text-black cursor-pointer" />
           </div>
-
+ */}
           <span>Selecione o Tipo:</span>
           <select {...register('tipo')} className="rounded-xl h-16 p-2 text-black cursor-pointer" placeholder="Selecione uma opção">
             <option value="saida">Saida</option>
