@@ -9,13 +9,13 @@ import Totais from "./components/totais"
 export const revalidate = 60
 
 async function getLancamentos(email: string) {
-  const response = await fetch(process.env.URL + '/api/lancamentos?email=' + email)
+  const response = await fetch(process.env.URL + '/api/lancamentos?email=' + email, { next: { revalidate: 60 } })
   const lancamentos = response.json()
   return lancamentos
 }
 
 async function getTotais(email: string) {
-  const response = await fetch(process.env.URL + '/api/lancamentos/totais?email=' + email)
+  const response = await fetch(process.env.URL + '/api/lancamentos/totais?email=' + email, { next: { revalidate: 60 } })
   const totais = response.json()
   return totais
 }
@@ -29,12 +29,13 @@ function Home() {
 
   async function CarregaDados(email: string) {
 
-    const [totais, lancamentos] = await Promise.all([
-      await getTotais(email),
-      await getLancamentos(email)
-    ])
+    await Promise.all([])
+    const totais = await getTotais(email)
+    const lancamentos = await getLancamentos(email)
+
     setTotais(totais)
     setLancamentos(lancamentos)
+
   }
 
   useEffect(() => {
