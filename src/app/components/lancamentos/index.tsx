@@ -10,7 +10,7 @@ type props = {
   id: number
 }
 
-export const revalidate = 1
+export const revalidate = 60
 
 async function getLancamentos() {
   try {

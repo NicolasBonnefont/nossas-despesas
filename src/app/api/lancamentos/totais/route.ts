@@ -4,7 +4,7 @@ import { getServerSession } from 'next-auth';
 import { NextRequest, NextResponse } from 'next/server';
 import { authOptions } from '../../auth/[...nextauth]/route';
 
-export const revalidate = 1
+export const revalidate = 60
 
 export async function GET(request: NextRequest) {
 

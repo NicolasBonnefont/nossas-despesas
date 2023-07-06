@@ -5,7 +5,7 @@ import Lancamentos from "./components/lancamentos"
 import Totais from "./components/totais"
 
 
-export const revalidate = 1
+export const revalidate = 60
 
 async function Home() {
 
