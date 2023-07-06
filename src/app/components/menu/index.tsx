@@ -1,12 +1,27 @@
 'use client'
-import { signIn, signOut, useSession } from 'next-auth/react';
+import { signIn, signOut } from 'next-auth/react';
 import Image from "next/image";
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import { FiArrowRight } from "react-icons/fi";
 import { EmailContexto } from '../Providers/EmailProvider';
 
 function Menu() {
-  const { data, status } = useContext(EmailContexto)
+  const { data, status, setEmail } = useContext(EmailContexto)
+
+  useEffect(() => {
+
+    if (status == 'loading' || !status) {
+      return
+    } else {
+      if (data?.user?.email) {
+        setEmail(data?.user?.email)
+      } else {
+        setEmail(`${new Date().getTime()}@convidado`)
+      }
+    }
+
+  }, [data, status])
+
   return (
     <menu className="flex  w-full h-28 px-32 ">
 

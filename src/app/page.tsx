@@ -1,8 +1,9 @@
 'use client'
 import Link from "next/link"
-import { useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import { FiPlusCircle } from "react-icons/fi"
 import Lancamentos from "./components/lancamentos"
+import { EmailContexto } from "./components/Providers/EmailProvider"
 import Totais from "./components/totais"
 
 export const revalidate = 1
@@ -21,13 +22,10 @@ async function getTotais(email: string) {
 
 async function Home() {
 
-
   const [totais, setTotais] = useState<any>()
   const [lancamentos, setLancamentos] = useState<any>()
-  /* 
-    const { email } = useContext(EmailContexto) */
 
-
+  const { email, status } = useContext(EmailContexto)
 
   async function CarregaDados(email: string) {
     const totais = await getTotais(email)
@@ -37,6 +35,18 @@ async function Home() {
     setLancamentos(lancamentos)
 
   }
+
+/*   useEffect(() => {
+
+    if (status !== 'loading' || !status) {
+
+      if (email) {
+        CarregaDados(email)
+      }
+
+    }
+
+  }, [email, status]) */
 
   return (
 

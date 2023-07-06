@@ -22,11 +22,17 @@ export const EmailProvider = ({ children }: { children: React.ReactNode }) => {
 
   const [email, setEmail] = useState('');
 
-  const { data, status } = useSession()
+  const { data, status ,update} = useSession()
+
+ 
 
   useEffect(() => {
     console.log(email)
   }, [email])
+
+  useEffect(()=>{
+    console.log( data, status ,update)
+  },[ data, status ,update])
 
   return (
     <EmailContexto.Provider value={{ email, setEmail, status, data }}>
