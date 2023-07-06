@@ -8,6 +8,8 @@ export async function GET(request: NextRequest) {
 
   try {
 
+    console.log('Solicitado...')
+
     const email = request.nextUrl.searchParams.get('email')!
 
     const lancamentos = await prisma.lancamentos.findMany({
