@@ -1,3 +1,4 @@
+
 import prisma from '@/db/prisma'
 import { NextResponse } from 'next/server'
 
@@ -12,7 +13,8 @@ export async function GET() {
         valor: true
       },
       where: {
-        tipo: 'entrada'
+        tipo: 'entrada',
+       // email_cliente: email
       }
     })
 
@@ -21,7 +23,8 @@ export async function GET() {
         valor: true
       },
       where: {
-        tipo: 'saida'
+        tipo: 'saida',
+       // email_cliente: email
       }
     })
 
@@ -33,7 +36,7 @@ export async function GET() {
     return NextResponse.json(
       {
         total_entrada: Number(total_entrada.toFixed(2)),
-        total_saida:Number(total_saida.toFixed(2)),
+        total_saida: Number(total_saida.toFixed(2)),
         total: Number(totais.toFixed(2))
       }
     )

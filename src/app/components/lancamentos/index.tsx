@@ -20,7 +20,7 @@ function Lancamentos({ lancamentos }: props) {
     <div className="flex flex-col items-center gap-2 max-h-[60vh] overflow-auto p-6">
 
       {
-        lancamentos[0] && lancamentos.map(lancamento => (
+        lancamentos&& lancamentos.map(lancamento => (
           <CardLancamentos
             key={lancamento.id}
             id={lancamento.id}
@@ -34,7 +34,7 @@ function Lancamentos({ lancamentos }: props) {
       }
 
       {
-        !lancamentos[0] &&
+        lancamentos &&!lancamentos[0] &&
         <span className="text-white">Sem lançamentos 😉</span>
       }
 

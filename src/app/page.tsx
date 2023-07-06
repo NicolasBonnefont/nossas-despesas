@@ -1,26 +1,42 @@
+'use client'
 import Link from "next/link"
+import { useState } from "react"
 import { FiPlusCircle } from "react-icons/fi"
 import Lancamentos from "./components/lancamentos"
 import Totais from "./components/totais"
 
-export const revalidate = 10
+export const revalidate = 1
 
-async function getLancamentos() {
-  const response = await fetch(process.env.URL + '/api/lancamentos')
+async function getLancamentos(email: string) {
+  const response = await fetch(process.env.URL + '/api/lancamentos?email=' + email)
   const lancamentos = response.json()
   return lancamentos
 }
 
-async function getTotais() {
-  const response = await fetch(process.env.URL + '/api/lancamentos/totais')
+async function getTotais(email: string) {
+  const response = await fetch(process.env.URL + '/api/lancamentos/totais?email=' + email)
   const totais = response.json()
   return totais
 }
 
 async function Home() {
 
-  const totais = await getTotais()
-  const lancamentos = await getLancamentos()
+
+  const [totais, setTotais] = useState<any>()
+  const [lancamentos, setLancamentos] = useState<any>()
+  /* 
+    const { email } = useContext(EmailContexto) */
+
+
+
+  async function CarregaDados(email: string) {
+    const totais = await getTotais(email)
+    const lancamentos = await getLancamentos(email)
+
+    setTotais(totais)
+    setLancamentos(lancamentos)
+
+  }
 
   return (
 
