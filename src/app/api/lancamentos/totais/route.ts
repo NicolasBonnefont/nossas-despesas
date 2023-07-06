@@ -1,12 +1,13 @@
 
 import prisma from '@/db/prisma'
-import { NextResponse } from 'next/server'
+import { NextRequest, NextResponse } from 'next/server'
 
-export const revalidate = 10
+export const revalidate = 0
 
-export async function GET() {
+export async function GET(request: NextRequest) {
 
   try {
+    const email = request.nextUrl.searchParams.get('email')!
 
     const entradas = await prisma.lancamentos.aggregate({
       _sum: {
@@ -14,7 +15,7 @@ export async function GET() {
       },
       where: {
         tipo: 'entrada',
-       // email_cliente: email
+        email_cliente: email
       }
     })
 
@@ -24,7 +25,7 @@ export async function GET() {
       },
       where: {
         tipo: 'saida',
-       // email_cliente: email
+        email_cliente: email
       }
     })
 

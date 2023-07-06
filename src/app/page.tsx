@@ -6,7 +6,7 @@ import Lancamentos from "./components/lancamentos"
 import { EmailContexto } from "./components/Providers/EmailProvider"
 import Totais from "./components/totais"
 
-export const revalidate = 1
+export const revalidate = 60
 
 async function getLancamentos(email: string) {
   const response = await fetch(process.env.URL + '/api/lancamentos?email=' + email)
