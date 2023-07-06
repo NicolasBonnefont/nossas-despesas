@@ -1,11 +1,12 @@
 'use client'
 import { signIn, signOut, useSession } from 'next-auth/react';
 import Image from "next/image";
+import { useContext } from 'react';
 import { FiArrowRight } from "react-icons/fi";
+import { EmailContexto } from '../Providers/EmailProvider';
 
 function Menu() {
-  const { data, status} = useSession()
-
+  const { data, status } = useContext(EmailContexto)
   return (
     <menu className="flex  w-full h-28 px-32 ">
 

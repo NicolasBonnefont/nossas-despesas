@@ -1,18 +1,20 @@
-import { Session } from 'inspector';
+import { Session } from 'next-auth';
 import { useSession } from 'next-auth/react';
 import React, { createContext, Dispatch, SetStateAction, useEffect, useState } from 'react';
 
 interface EmailContextProps {
   email: string;
   setEmail: Dispatch<SetStateAction<string>>
-  status: "authenticated" | "loading" | "unauthenticated",
-  data:Session | null
+  status: "authenticated" | "loading" | "unauthenticated" | null,
+  data: Session | null
 }
 
 export const EmailContexto = createContext<EmailContextProps>(
   {
-    email: '',
-    setEmail: (email) => { }
+    email: "",
+    setEmail: (email) => '',
+    data: null,
+    status: null
   }
 );
 
@@ -27,7 +29,7 @@ export const EmailProvider = ({ children }: { children: React.ReactNode }) => {
   }, [email])
 
   return (
-    <EmailContexto.Provider value={{ email, setEmail, data, status }}>
+    <EmailContexto.Provider value={{ email, setEmail, status, data }}>
       {children}
     </EmailContexto.Provider>
   );
