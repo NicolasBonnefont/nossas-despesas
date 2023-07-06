@@ -9,7 +9,7 @@ datasource db {
 
 model lancamentos {
   id                 Int                 @id @default(autoincrement())
-  email_cliente      String              @unique
+  email_cliente      String              
   descricao          String
   valor              Decimal
   total_parcelas     Int

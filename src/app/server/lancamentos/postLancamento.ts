@@ -9,8 +9,6 @@ async function PostLancamento({ ...dados }: lancamentos) {
 
   try {
 
-    const email = cookies().get('email')!.value
-
     await prisma.lancamentos.create({
       data: {
         descricao: dados.descricao,
@@ -19,7 +17,7 @@ async function PostLancamento({ ...dados }: lancamentos) {
         total_parcelas: 1,
         valor: dados.valor,
         repete_todos_meses: dados.repete_todos_meses,
-        email_cliente: email
+        email_cliente: dados.email_cliente
       }
     })
 

@@ -1,4 +1,3 @@
-'use client'
 import { FiArrowDownCircle, FiArrowUpCircle, FiDollarSign } from "react-icons/fi"
 import Card from "../card"
 

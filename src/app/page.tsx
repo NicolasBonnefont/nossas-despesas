@@ -20,7 +20,7 @@ async function getTotais(email: string) {
   return totais
 }
 
-async function Home() {
+function Home() {
 
   const [totais, setTotais] = useState<any>()
   const [lancamentos, setLancamentos] = useState<any>()
@@ -36,7 +36,7 @@ async function Home() {
 
   }
 
-/*   useEffect(() => {
+  useEffect(() => {
 
     if (status !== 'loading' || !status) {
 
@@ -46,7 +46,7 @@ async function Home() {
 
     }
 
-  }, [email, status]) */
+  }, [email])
 
   return (
 

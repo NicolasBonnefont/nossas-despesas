@@ -4,14 +4,17 @@ import { lancamentos } from "@prisma/client"
 import Image from "next/image"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
-import { useState } from "react"
+import { useContext, useState } from "react"
 import { SubmitHandler, useForm } from "react-hook-form"
 import { FiArrowLeft } from "react-icons/fi"
 import { BounceLoader } from "react-spinners"
 import money from '../../../public/novo-lancamento/money.png'
+import { EmailContexto } from "../components/Providers/EmailProvider"
 import PostLancamento from "../server/lancamentos/postLancamento"
 
 function NovoLancamento() {
+
+  const { email } = useContext(EmailContexto)
 
   const { register, handleSubmit, watch, formState: { errors } } = useForm<lancamentos>();
 
@@ -23,7 +26,12 @@ function NovoLancamento() {
 
     setIsLoading(true)
 
-    await PostLancamento(data)
+    const dados = {
+      ...data,
+      email_cliente: email
+    }
+
+    await PostLancamento(dados)
       .then(response => {
         router.push('/')
       })
@@ -49,8 +57,8 @@ function NovoLancamento() {
           <input {...register('descricao')} className="rounded-xl h-16 p-2 text-black" placeholder="Descrição..." />
 
           <span>Valor:</span>
-          <input {...register('valor',{
-            valueAsNumber:true
+          <input {...register('valor', {
+            valueAsNumber: true
           })} className="rounded-xl h-16 p-2 text-black" placeholder="Valor..." />
 
           <span>Parcelas:</span>
