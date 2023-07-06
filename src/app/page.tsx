@@ -28,12 +28,13 @@ function Home() {
   const { email, status } = useContext(EmailContexto)
 
   async function CarregaDados(email: string) {
-    const totais = await getTotais(email)
-    const lancamentos = await getLancamentos(email)
 
+    const [totais, lancamentos] = await Promise.all([
+      await getTotais(email),
+      await getLancamentos(email)
+    ])
     setTotais(totais)
     setLancamentos(lancamentos)
-
   }
 
   useEffect(() => {
