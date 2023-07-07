@@ -24,7 +24,7 @@ async function Login() {
           alt='logo'
         />
 
-        <h1 className='text-2xl font-bold'>Administre teu Money ! 💰</h1>
+        <h1 className='text-2xl font-bold'>Administre seu Money ! 💰</h1>
 
         <ButtonLoginGoogle />
 
