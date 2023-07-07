@@ -41,6 +41,7 @@ async function Login() {
           width={450}
           height={450}
           alt='logo'
+          priority={true}
         />
 
         <h1 className='text-2xl font-bold'>Administre seu Money ! 💰</h1>

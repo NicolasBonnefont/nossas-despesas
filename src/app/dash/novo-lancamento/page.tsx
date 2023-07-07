@@ -25,7 +25,7 @@ function NovoLancamento() {
     await PostLancamento(data)
       .then(response => {
         console.log(response)
-        router.push('/dash/'+response)
+        router.push('/dash/' + response)
       })
       .catch(error => {
         console.log(error)
@@ -86,6 +86,7 @@ function NovoLancamento() {
           src={money}
           alt='Imagem representando dinhero'
           className="max-sm:w-[220px]"
+          priority={true}
         />
 
       </div>
