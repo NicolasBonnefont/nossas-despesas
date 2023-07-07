@@ -17,7 +17,7 @@ model lancamentos {
   created_at         DateTime            @default(now())
   updated_at         DateTime            @updatedAt
   tipo               tipo_lancamento
-  repete_todos_meses Boolean
+  repete_todos_meses Boolean             @default(false)
   emails_permitidos  emails_permitidos[]
   usuario            usuario?            @relation(fields: [id_usuario], references: [id])
   id_usuario         Int?
