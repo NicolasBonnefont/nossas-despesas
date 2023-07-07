@@ -1,18 +1,24 @@
 'use server'
 
 import prisma from "@/db/prisma"
-import { revalidateTag } from "next/cache"
+import { revalidatePath, revalidateTag } from "next/cache"
+import { redirect } from "next/navigation"
 
 async function RemoveLancamento(id: number) {
   try {
 
-    await prisma.lancamentos.delete({
+    const del = await prisma.lancamentos.delete({
       where: {
         id
+      },
+      include: {
+        usuario: true
       }
     })
 
-    revalidateTag('/')
+    const tag ='/dash'
+
+    revalidatePath(tag)
 
     return
 

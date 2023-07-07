@@ -1,10 +1,11 @@
-'use server'
+"use server"
 
 import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 import prisma from "@/db/prisma";
 import { lancamentos } from "@prisma/client";
 import { getServerSession } from "next-auth";
-import { revalidateTag } from "next/cache";
+import { revalidateTag, revalidatePath } from "next/cache";
+
 
 async function PostLancamento({ ...dados }: lancamentos) {
 
@@ -14,6 +15,12 @@ async function PostLancamento({ ...dados }: lancamentos) {
 
     const email = data?.user?.email!
 
+    const busca_usuario = await prisma.usuario.findFirst({
+      where: {
+        email
+      }
+    })
+
     await prisma.lancamentos.create({
       data: {
         descricao: dados.descricao,
@@ -22,13 +29,16 @@ async function PostLancamento({ ...dados }: lancamentos) {
         total_parcelas: 1,
         valor: dados.valor,
         repete_todos_meses: false,
-        email_cliente: email
+        email_cliente: busca_usuario?.email!,
+        id_usuario: busca_usuario?.id!
       }
     })
 
-    revalidateTag('/')
+    const tag = '/dash'
 
-    return
+    revalidatePath(tag)
+
+    return busca_usuario?.id
 
   } catch (error) {
     console.log(error)

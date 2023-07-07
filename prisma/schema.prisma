@@ -25,7 +25,7 @@ model lancamentos {
 
 model usuario {
   id    Int    @id @default(autoincrement())
-  nome  String
+  nome  String @unique
   email String
 
   lancamentos lancamentos[]

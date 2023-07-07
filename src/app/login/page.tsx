@@ -1,3 +1,4 @@
+import prisma from '@/db/prisma'
 import { getServerSession } from 'next-auth'
 import Image from 'next/image'
 import { redirect } from 'next/navigation'
@@ -9,7 +10,25 @@ async function Login() {
   const session = await getServerSession(authOptions)
 
   if (session) {
-    redirect('/dash/' + session.user?.email)
+    const { email, name } = session.user!
+
+    const busca_usuario = await prisma.usuario.findFirst({
+      where: {
+        email: email!
+      }
+    })
+
+    if (!busca_usuario) {
+      const novo_usuario = await prisma.usuario.create({
+        data: {
+          email: email!,
+          nome: name!,
+        }
+      })
+      redirect('/dash/' + novo_usuario.id)
+    } else {
+      redirect('/dash/' + busca_usuario.id)
+    }
   }
 
   return (
@@ -27,7 +46,6 @@ async function Login() {
         <h1 className='text-2xl font-bold'>Administre seu Money ! 💰</h1>
 
         <ButtonLoginGoogle />
-
 
       </div>
 

@@ -33,7 +33,6 @@ function CardLancamentos({ descricao, valor, tipo, id }: cardProps) {
     await RemoveLancamento(id)
       .catch(error => {
         location.reload()
-        console.log(error)
       })
   }
 

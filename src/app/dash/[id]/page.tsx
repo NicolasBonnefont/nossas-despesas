@@ -1,20 +1,17 @@
 import { authOptions } from "@/app/api/auth/[...nextauth]/route"
 import Lancamentos from "@/app/components/lancamentos"
-import Menu from "@/app/components/menu"
 import Totais from "@/app/components/totais"
 import { getServerSession } from "next-auth"
 import Link from "next/link"
 import { redirect } from "next/navigation"
 import { FiPlusCircle } from "react-icons/fi"
 
-export const revalidate = 60
-
-async function Logado({ params }: { params: { email: string } }) {
+async function Logado() {
 
   const session = await getServerSession(authOptions)
 
   if (!session) {
-    redirect('/')
+    redirect('/login')
   }
 
   return (

@@ -1,20 +1,14 @@
 import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 import { getServerSession } from "next-auth";
 import Image from "next/image";
-import { redirect } from "next/navigation";
 import BtnDeslogar from "./BtnDeslogar";
 import BtnLogar from "./BtnLogar";
 
 async function Menu() {
-
   const data = await getServerSession(authOptions)
 
-  if (!data) {
-    redirect('/login')
-  }
-
   return (
-    <menu className="flex  w-full h-28 px-32 ">
+    <menu className="flex  w-full h-28 px-32 max-sm:px-10 ">
       {
 
         data ?
@@ -28,7 +22,9 @@ async function Menu() {
                 height={45}
                 className='rounded-lg'
               />
-              <span>{data?.user?.name}</span>
+              <span className="max-sm:hidden">
+                {data?.user?.name}
+              </span>
 
             </div>
             <BtnDeslogar />
@@ -44,6 +40,6 @@ async function Menu() {
     </menu>
   )
 
-}
 
+}
 export default Menu
