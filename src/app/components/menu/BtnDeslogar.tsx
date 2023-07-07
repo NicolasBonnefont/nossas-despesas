@@ -26,7 +26,7 @@ function BtnDeslogar() {
 
   return (
     <button onClick={() => signOut()} className="flex items-center gap-4 hover:underline hover:underline-1">
-      <span>Deslogar</span>
+      <span>Sair</span>
       <FiArrowRight />
     </button>
   )
