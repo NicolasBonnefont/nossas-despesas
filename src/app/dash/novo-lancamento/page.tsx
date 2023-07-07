@@ -85,7 +85,7 @@ function NovoLancamento() {
         <Image
           src={money}
           alt='Imagem representando dinhero'
-          className="max-sm:w-[220px] w-[450]"
+          className="max-sm:w-[220px] w-[480px]"
           priority={true}
         />
 
