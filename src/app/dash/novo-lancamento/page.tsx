@@ -1,9 +1,10 @@
 'use client'
 
 import { lancamentos } from "@prisma/client"
+import { useSession } from "next-auth/react"
 import Image from "next/image"
 import { useRouter } from "next/navigation"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { SubmitHandler, useForm } from "react-hook-form"
 import { FiArrowLeft } from "react-icons/fi"
 import { BounceLoader } from "react-spinners"
@@ -11,6 +12,16 @@ import money from '../../../../public/novo-lancamento/money.png'
 import PostLancamento from "../../server/lancamentos/postLancamento"
 
 function NovoLancamento() {
+
+  const session = useSession()
+
+  useEffect(() => {
+
+    if (!session) {
+      router.replace('/login')
+    }
+
+  }, [])
 
   const { register, handleSubmit } = useForm<lancamentos>();
 
