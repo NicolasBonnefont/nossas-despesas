@@ -82,7 +82,6 @@ function NovoLancamento() {
 
         </form>
 
-
         <Image
           src={money}
           alt='Imagem representando dinhero'
