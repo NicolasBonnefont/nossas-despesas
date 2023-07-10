@@ -29,7 +29,7 @@ async function Lancamentos() {
   const lancamentos: props[] = await getLancamentos()
 
   return (
-    <div className="flex flex-col items-center gap-2 max-h-[60vh] overflow-auto p-6">
+    <div className="flex flex-col items-center gap-2 max-h-[60vh] overflow-auto p-6 ">
 
       {
         lancamentos.length > 0 && lancamentos?.map(lancamento => (
@@ -46,7 +46,7 @@ async function Lancamentos() {
 
       {
         lancamentos && !lancamentos[0] &&
-        <span className="text-white">Sem lançamentos 😉</span>
+        <span className="text-white max-sm:text-sm">Sem lançamentos 😉</span>
       }
 
     </div>
