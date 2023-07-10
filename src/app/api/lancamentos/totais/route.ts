@@ -11,28 +11,86 @@ export async function GET() {
 
     const email = data?.user?.email!
 
-    const entradas = await prisma.lancamentos.aggregate({
+    const entradas_fixas = await prisma.lancamentos.aggregate({
       _sum: {
         valor: true
       },
       where: {
         tipo: 'entrada',
-        email_cliente: email
+        email_cliente: email,
+        repete_todos_meses: true,
+        data_parcela: {
+          lte: new Date(new Date().getFullYear(), new Date().getMonth() + 1, 0),
+          gte: new Date(new Date().getFullYear(), new Date().getMonth(), 1)
+        }
       }
     })
 
-    const saidas = await prisma.lancamentos.aggregate({
+    const entradas_manuais = await prisma.lancamentos.aggregate({
+      _sum: {
+        valor: true
+      },
+      where: {
+        tipo: 'entrada',
+        email_cliente: email,
+        repete_todos_meses: false,
+        created_at: {
+          lte: new Date(new Date().getFullYear(), new Date().getMonth() + 1, 0),
+          gte: new Date(new Date().getFullYear(), new Date().getMonth(), 1)
+        }
+      }
+    })
+
+    const saidas_fixas = await prisma.lancamentos.aggregate({
       _sum: {
         valor: true
       },
       where: {
         tipo: 'saida',
-        email_cliente: email
+        email_cliente: email,
+        repete_todos_meses: true,
+        data_parcela: {
+          lte: new Date(new Date().getFullYear(), new Date().getMonth() + 1, 0),
+          gte: new Date(new Date().getFullYear(), new Date().getMonth(), 1)
+        }
       }
     })
 
-    const total_entrada = Number(entradas?._sum.valor) ? Number(entradas?._sum.valor) : 0
-    const total_saida = Number(saidas?._sum.valor) ? Number(saidas?._sum.valor) : 0
+    const saidas_parcelas = await prisma.lancamentos.aggregate({
+      _sum: {
+        valor: true
+      },
+      where: {
+        tipo: 'saida',
+        email_cliente: email,
+        total_parcelas: {
+          gte: 1
+        },
+        data_parcela: {
+          lte: new Date(new Date().getFullYear(), new Date().getMonth() + 1, 0),
+          gte: new Date(new Date().getFullYear(), new Date().getMonth(), 1)
+        }
+      }
+    })
+
+    const saidas_manuais = await prisma.lancamentos.aggregate({
+      _sum: {
+        valor: true
+      },
+      where: {
+        tipo: 'saida',
+        email_cliente: email,
+        total_parcelas: 0,
+        repete_todos_meses: false,
+        created_at: {
+          lte: new Date(new Date().getFullYear(), new Date().getMonth() + 1, 0),
+          gte: new Date(new Date().getFullYear(), new Date().getMonth(), 1)
+        }
+      }
+    })
+    
+    const total_entrada = Number(entradas_fixas?._sum.valor) + Number(entradas_manuais?._sum.valor)
+    const total_saida = Number(saidas_fixas._sum.valor) + Number(saidas_parcelas?._sum.valor) + Number(saidas_manuais?._sum.valor)
 
     const totais = total_entrada - total_saida
 

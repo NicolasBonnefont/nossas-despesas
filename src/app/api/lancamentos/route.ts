@@ -14,10 +14,14 @@ export async function GET() {
 
     const lancamentos = await prisma.lancamentos.findMany({
       where: {
-        email_cliente: email
+        email_cliente: email,
+        data_parcela: {
+          lte: new Date(new Date().getFullYear(), new Date().getMonth() + 1, 0),
+          gte: new Date(new Date().getFullYear(), new Date().getMonth(), 1)
+        }
+
       }
     })
-
 
     return NextResponse.json(lancamentos)
 

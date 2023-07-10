@@ -3,9 +3,9 @@
 import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 import prisma from "@/db/prisma";
 import { lancamentos } from "@prisma/client";
+import { addMonths } from "date-fns";
 import { getServerSession } from "next-auth";
-import { revalidateTag, revalidatePath } from "next/cache";
-
+import { revalidatePath } from "next/cache";
 
 async function PostLancamento({ ...dados }: lancamentos) {
 
@@ -21,18 +21,36 @@ async function PostLancamento({ ...dados }: lancamentos) {
       }
     })
 
-    await prisma.lancamentos.create({
-      data: {
-        descricao: dados.descricao,
-        tipo: dados.tipo,
-        parcela_atual: 1,
-        total_parcelas: 1,
-        valor: dados.valor,
-        repete_todos_meses: false,
-        email_cliente: busca_usuario?.email!,
-        id_usuario: busca_usuario?.id!
+    if (dados.total_parcelas && dados.total_parcelas > 0) {
+
+      for (let index = 0; index <= dados.total_parcelas; index++) {
+        await prisma.lancamentos.create({
+          data: {
+            descricao: dados.descricao,
+            tipo: dados.tipo,
+            total_parcelas: dados.total_parcelas,
+            valor: dados.valor,
+            repete_todos_meses: false,
+            email_cliente: busca_usuario?.email!,
+            id_usuario: busca_usuario?.id!,
+            data_parcela: addMonths(new Date(), index)
+          }
+        })
       }
-    })
+
+    } else {
+      await prisma.lancamentos.create({
+        data: {
+          descricao: dados.descricao,
+          tipo: dados.tipo,
+          total_parcelas: dados.total_parcelas,
+          valor: dados.valor,
+          repete_todos_meses: dados.repete_todos_meses,
+          email_cliente: busca_usuario?.email!,
+          id_usuario: busca_usuario?.id!
+        }
+      })
+    }
 
     const tag = '/dash'
 

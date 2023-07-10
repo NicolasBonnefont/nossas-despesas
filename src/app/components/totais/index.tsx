@@ -6,7 +6,7 @@ type totaisProps = {
   total_saida: number
   total: number
 }
-export const revalidate = 60
+export const revalidate = 30
 
 async function getTotais() {
   const response = await fetch(process.env.URL + '/api/lancamentos/totais', { next: { revalidate } })

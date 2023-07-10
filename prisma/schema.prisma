@@ -13,7 +13,7 @@ model lancamentos {
   descricao          String
   valor              Decimal
   total_parcelas     Int
-  parcela_atual      Int
+  data_parcela       DateTime?           @default(now())
   created_at         DateTime            @default(now())
   updated_at         DateTime            @updatedAt
   tipo               tipo_lancamento

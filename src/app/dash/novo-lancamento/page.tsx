@@ -57,7 +57,9 @@ function NovoLancamento() {
           })} className="rounded-xl h-12 p-2 text-black" placeholder="Valor..." type='number' />
 
           <span>Parcelas:</span>
-          <input required {...register('total_parcelas')} type='number' className="rounded-xl h-12 p-2 text-black" placeholder="Valor..." />
+          <input required {...register('total_parcelas', {
+            valueAsNumber: true
+          })} type='number' className="rounded-xl h-12 p-2 text-black" placeholder="Valor..." />
 
           <div className="flex w-full items-center gap-8 h-auto">
             <span>Repete todos os meses:</span>
