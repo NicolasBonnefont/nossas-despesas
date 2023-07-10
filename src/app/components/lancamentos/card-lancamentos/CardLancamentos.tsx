@@ -38,7 +38,7 @@ function CardLancamentos({ descricao, valor, tipo, id }: cardProps) {
 
   return (
 
-    <div className={`bg-white font-bold flex w-full h-16 rounded-xl items-center p-8 ${tipo == 'saida' ? 'text-red-600' : 'text-green-600'}  hover:bg-gray-200`}>
+    <div className={`bg-white max-sm:text-sm font-bold flex w-full h-16 rounded-xl items-center p-8 ${tipo == 'saida' ? 'text-red-600' : 'text-green-600'}  hover:bg-gray-200`}>
 
       <div className="flex items-center gap-4">
         <button disabled={loading} onClick={() => ExcluiLancamento(id)} className='flex items-center'>
@@ -52,7 +52,7 @@ function CardLancamentos({ descricao, valor, tipo, id }: cardProps) {
         <p>{descricao}</p>
       </div>
 
-      <div className="ml-auto flex items-center gap-4" >
+      <div className="ml-auto flex items-center gap-4 " >
         <p>R$ {valor}</p>
         {
           tipo == 'saida' ?
