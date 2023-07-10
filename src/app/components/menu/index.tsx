@@ -8,7 +8,7 @@ import BtnLogar from "./BtnLogar";
 async function Menu() {
   const data = await getServerSession(authOptions)
 
-  if(!data){
+  if (!data) {
     redirect('/login')
   }
 
