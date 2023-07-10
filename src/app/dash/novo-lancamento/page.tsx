@@ -49,28 +49,29 @@ function NovoLancamento() {
 
         <form onSubmit={handleSubmit(onSubmit)} className="flex flex-1 flex-col max-w-2xl max-sm:w-full gap-2 ">
           <span>Descrição:</span>
-          <input required {...register('descricao')} className="rounded-xl h-16 p-2 text-black" placeholder="Descrição..." />
+          <input required {...register('descricao')} className="rounded-xl h-12 p-2 text-black" placeholder="Descrição..." maxLength={10} />
 
           <span>Valor:</span>
           <input required {...register('valor', {
             valueAsNumber: true
-          })} className="rounded-xl h-16 p-2 text-black" placeholder="Valor..." />
+          })} className="rounded-xl h-12 p-2 text-black" placeholder="Valor..." type='number' />
 
-          {/*         <span>Parcelas:</span>
-    <input required {...register('total_parcelas')} className="rounded-xl h-16 p-2 text-black" placeholder="Valor..." />
-*/}
-          {/*           <div className="flex w-full items-center gap-8 h-auto">
-      <span>Repete todos os meses:</span>
-      <input required {...register('repete_todos_meses')} type="checkbox" className="rounded-2xl h-8 p-2 text-black cursor-pointer" />
-    </div>
-*/}
+          <span>Parcelas:</span>
+          <input required {...register('total_parcelas')} type='number' className="rounded-xl h-12 p-2 text-black" placeholder="Valor..." />
+
+          <div className="flex w-full items-center gap-8 h-auto">
+            <span>Repete todos os meses:</span>
+            <input  {...register('repete_todos_meses')} type="checkbox" className="rounded-2xl h-10 p-2 text-black cursor-pointer" />
+          </div>
+
           <span>Selecione o Tipo:</span>
-          <select required {...register('tipo')} className="rounded-xl h-16 p-2 text-black cursor-pointer" placeholder="Selecione uma opção">
+          <select required {...register('tipo')} className="rounded-xl h-12 p-2 text-black cursor-pointer" placeholder="Selecione uma opção">
+            <option value="">Selecione uma opção</option>
             <option value="saida">Saida</option>
             <option value="entrada">Entrada</option>
           </select>
 
-          <button className="flex items-center justify-center rounded-xl h-16 bg-green-600 mt-8 font-bold">
+          <button className="flex items-center justify-center rounded-xl h-12 bg-green-600 mt-8 font-bold">
             {
               isLoading ?
                 <BounceLoader color="white" size='16' />
@@ -85,8 +86,9 @@ function NovoLancamento() {
         <Image
           src={money}
           alt='Imagem representando dinhero'
-          className="max-sm:w-[220px] w-[480px]"
+          className="max-sm:w-[200px] w-[420px]"
           priority={true}
+          quality={60}
         />
 
       </div>
