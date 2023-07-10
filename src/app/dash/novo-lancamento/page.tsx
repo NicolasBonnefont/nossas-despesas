@@ -87,7 +87,6 @@ function NovoLancamento() {
           alt='Imagem representando dinhero'
           className="max-sm:w-[200px] w-[420px]"
           priority={true}
-          quality={60}
         />
 
       </div>
