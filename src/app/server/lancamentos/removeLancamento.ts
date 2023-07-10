@@ -1,8 +1,7 @@
 'use server'
 
 import prisma from "@/db/prisma"
-import { revalidatePath, revalidateTag } from "next/cache"
-import { redirect } from "next/navigation"
+import { revalidatePath } from "next/cache"
 
 async function RemoveLancamento(id: number) {
   try {
