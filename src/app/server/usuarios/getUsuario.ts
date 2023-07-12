@@ -1,9 +1,9 @@
 import prisma from "@/db/prisma"
 
-
-
 async function GetUsuario(email: string){
   try {
+
+
 
     if(!email || email==''){
       throw 'Email é necessário !'

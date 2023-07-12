@@ -19,15 +19,15 @@ async function Login() {
     })
 
     if (!busca_usuario) {
-      const novo_usuario = await prisma.usuario.create({
+      await prisma.usuario.create({
         data: {
           email: email!,
           nome: name!,
         }
       })
-      redirect('/dash/' + novo_usuario.id)
+      redirect('/dash')
     } else {
-      redirect('/dash/' + busca_usuario.id)
+      redirect('/dash')
     }
   }
 

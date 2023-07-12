@@ -4,22 +4,11 @@ import { useState } from "react";
 import { FiArrowDownCircle, FiArrowUpCircle, FiTrash2 } from "react-icons/fi";
 import { BounceLoader } from "react-spinners";
 
-type lancamentosProps = {
-  id: number;
-  descricao: string;
-  valor: number;
-  total_parcelas: number;
-  parcela_atual: number;
-  tipo: 'saida' | 'entrada';
-  repete_todos_meses: boolean;
-}
-
 type cardProps = {
   id: number
   descricao: string,
   valor: string
   tipo: 'entrada' | 'saida'
-  lancamentos: lancamentosProps[]
 }
 
 function CardLancamentos({ descricao, valor, tipo, id }: cardProps) {

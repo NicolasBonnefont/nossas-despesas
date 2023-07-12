@@ -1,19 +1,39 @@
+import { authOptions } from "@/app/api/auth/[...nextauth]/route";
+import prisma from "@/db/prisma";
+import { getServerSession } from "next-auth";
 
-import prisma from '@/db/prisma';
-import { getServerSession } from 'next-auth';
-import { NextResponse } from 'next/server';
-import { authOptions } from '../../auth/[...nextauth]/route';
+async function getLancamentos() {
+  try {
 
-export const revalidate = 0
+    const data = await getServerSession(authOptions);
 
-export async function GET() {
+    const email = data?.user?.email!
+
+    if (!data) {
+      throw Error('Não logado com sessão valida')
+    }
+
+    const lancamentos = await prisma.lancamentos.findMany({
+      where: {
+        email_cliente: email,
+        data_parcela: {
+          lte: new Date(new Date().getFullYear(), new Date().getMonth() + 1, 0),
+          gte: new Date(new Date().getFullYear(), new Date().getMonth(), 1)
+        }
+      }
+    })
+
+    return lancamentos
+
+  } catch (error) {
+    throw error
+  }
+}
+
+async function getTotais() {
 
   try {
     const data = await getServerSession(authOptions);
-/* 
-    if (!data) {
-      throw Error('Não logado com sessão valida')
-    } */
 
     const email = data?.user?.email!
 
@@ -100,18 +120,19 @@ export async function GET() {
 
     const totais = total_entrada - total_saida
 
-    return NextResponse.json(
-      {
-        total_entrada: Number(total_entrada.toFixed(2)),
-        total_saida: Number(total_saida.toFixed(2)),
-        total: Number(totais.toFixed(2))
-      }
-    )
+    const resultado = {
+      total_entrada: Number(total_entrada.toFixed(2)),
+      total_saida: Number(total_saida.toFixed(2)),
+      total: Number(totais.toFixed(2))
+    }
+
+    return resultado
 
   } catch (error: any) {
     console.log(error)
     return error
   }
 
-
 }
+
+export { getLancamentos, getTotais }

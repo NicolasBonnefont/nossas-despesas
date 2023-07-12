@@ -25,7 +25,7 @@ function NovoLancamento() {
     await PostLancamento(data)
       .then(response => {
         console.log(response)
-        router.push('/dash/' + response)
+        router.push('/dash')
       })
       .catch(error => {
         console.log(error)

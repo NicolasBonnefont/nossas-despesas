@@ -12,6 +12,8 @@ async function PostLancamento({ ...dados }: lancamentos) {
 
     const data = await getServerSession(authOptions);
 
+    console.log(data)
+
     const email = data?.user?.email!
 
     const busca_usuario = await prisma.usuario.findFirst({
@@ -51,7 +53,7 @@ async function PostLancamento({ ...dados }: lancamentos) {
       })
     }
 
-    return busca_usuario?.id
+    return 
 
   } catch (error) {
     console.log(error)

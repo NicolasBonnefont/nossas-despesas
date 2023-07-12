@@ -13,8 +13,8 @@ export async function GET() {
 
     const email = data?.user?.email!
 
-    if (!data) {      
-      throw Error('Não logado com sessão valida')      
+    if (!data) {
+      throw Error('Não logado com sessão valida')
     }
 
     const lancamentos = await prisma.lancamentos.findMany({

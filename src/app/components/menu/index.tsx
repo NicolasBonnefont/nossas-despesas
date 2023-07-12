@@ -8,9 +8,12 @@ import BtnLogar from "./BtnLogar";
 async function Menu() {
   const data = await getServerSession(authOptions)
 
+
+/*   console.log(data)
+
   if (!data) {
     redirect('/login')
-  }
+  } */
 
   return (
     <menu className="flex  w-full h-28 px-32 max-sm:px-10 ">
