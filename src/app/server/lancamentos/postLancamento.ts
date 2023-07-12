@@ -56,8 +56,6 @@ async function PostLancamento({ ...dados }: lancamentos) {
     revalidatePath('/dash')
     revalidateTag('/')
 
-    redirect('/dash')
-
   } catch (error) {
     console.log(error)
     throw error
