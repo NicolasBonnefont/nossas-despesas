@@ -4,6 +4,8 @@ import { getServerSession } from 'next-auth';
 import { NextResponse } from 'next/server';
 import { authOptions } from '../auth/[...nextauth]/route';
 
+export const revalidate = 0
+
 export async function GET() {
 
   try {
@@ -12,6 +14,10 @@ export async function GET() {
 
     const email = data?.user?.email!
 
+    if (!data) {      
+      throw Error('Não logado com sessão valida')      
+    }
+
     const lancamentos = await prisma.lancamentos.findMany({
       where: {
         email_cliente: email,
@@ -19,7 +25,6 @@ export async function GET() {
           lte: new Date(new Date().getFullYear(), new Date().getMonth() + 1, 0),
           gte: new Date(new Date().getFullYear(), new Date().getMonth(), 1)
         }
-
       }
     })
 

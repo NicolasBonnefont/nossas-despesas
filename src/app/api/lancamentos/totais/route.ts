@@ -4,10 +4,16 @@ import { getServerSession } from 'next-auth';
 import { NextResponse } from 'next/server';
 import { authOptions } from '../../auth/[...nextauth]/route';
 
+export const revalidate = 0
+
 export async function GET() {
 
   try {
     const data = await getServerSession(authOptions);
+
+    if (!data) {
+      throw Error('Não logado com sessão valida')
+    }
 
     const email = data?.user?.email!
 
