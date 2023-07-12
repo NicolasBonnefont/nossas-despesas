@@ -23,10 +23,6 @@ function NovoLancamento() {
     setIsLoading(true)
 
     await PostLancamento(data)
-      .then(response => {
-        console.log(response)
-        router.push('/dash')
-      })
       .catch(error => {
         console.log(error)
         setIsLoading(false)

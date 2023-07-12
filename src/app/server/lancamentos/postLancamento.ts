@@ -5,6 +5,8 @@ import prisma from "@/db/prisma";
 import { lancamentos } from "@prisma/client";
 import { addMonths } from "date-fns";
 import { getServerSession } from "next-auth";
+import { revalidatePath, revalidateTag } from "next/cache";
+import { redirect } from "next/navigation";
 
 async function PostLancamento({ ...dados }: lancamentos) {
 
@@ -51,7 +53,10 @@ async function PostLancamento({ ...dados }: lancamentos) {
       })
     }
 
-    return 
+    revalidatePath('/dash')
+    revalidateTag('/')
+
+    redirect('/dash')
 
   } catch (error) {
     console.log(error)
