@@ -10,11 +10,11 @@ type props = {
   id: number
 }
 
-export const revalidate = 30
+/* export const revalidate = 30 */
 
 async function getLancamentos() {
   try {
-    const response = await fetch(process.env.URL + '/api/lancamentos', { next: { revalidate } })
+    const response = await fetch(process.env.URL + '/api/lancamentos')
     const lancamentos = await response.json()
     return lancamentos
 

@@ -5,7 +5,7 @@ import prisma from "@/db/prisma";
 import { lancamentos } from "@prisma/client";
 import { addMonths } from "date-fns";
 import { getServerSession } from "next-auth";
-import { revalidatePath } from "next/cache";
+import { revalidatePath, revalidateTag } from "next/cache";
 
 async function PostLancamento({ ...dados }: lancamentos) {
 
@@ -55,6 +55,7 @@ async function PostLancamento({ ...dados }: lancamentos) {
     const tag = '/dash'
 
     revalidatePath(tag)
+    revalidateTag(tag)
 
     return busca_usuario?.id
 
