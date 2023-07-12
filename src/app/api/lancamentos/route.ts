@@ -1,4 +1,3 @@
-
 import prisma from '@/db/prisma';
 import { getServerSession } from 'next-auth';
 import { NextResponse } from 'next/server';

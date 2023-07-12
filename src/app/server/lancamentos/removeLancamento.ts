@@ -1,7 +1,6 @@
 'use server'
 
 import prisma from "@/db/prisma"
-import { revalidatePath, revalidateTag } from "next/cache"
 
 async function RemoveLancamento(id: number) {
   try {
@@ -14,11 +13,6 @@ async function RemoveLancamento(id: number) {
         usuario: true
       }
     })
-
-    const tag ='/dash'
-
-    revalidatePath(tag)
-    revalidateTag(tag)
 
     return
 

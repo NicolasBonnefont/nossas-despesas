@@ -94,7 +94,7 @@ export async function GET() {
         }
       }
     })
-    
+
     const total_entrada = Number(entradas_fixas?._sum.valor) + Number(entradas_manuais?._sum.valor)
     const total_saida = Number(saidas_fixas._sum.valor) + Number(saidas_parcelas?._sum.valor) + Number(saidas_manuais?._sum.valor)
 
