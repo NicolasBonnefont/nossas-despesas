@@ -47,7 +47,7 @@ function NovoLancamento() {
 
         <form onSubmit={handleSubmit(onSubmit)} className="flex flex-1 flex-col max-w-2xl max-sm:w-full gap-2 ">
           <span>Descrição:</span>
-          <input required {...register('descricao')} className="rounded-xl h-12 p-2 text-black" placeholder="Descrição..." maxLength={10} />
+          <input required {...register('descricao')} className="rounded-xl h-12 p-2 text-black" placeholder="Descrição..." maxLength={20} />
 
           <span>Valor:</span>
           <input required {...register('valor', {

@@ -16,7 +16,7 @@ async function Menu() {
   } */
 
   return (
-    <menu className="flex  w-full h-28 px-32 max-sm:px-10 ">
+    <menu className="flex w-full h-28 px-32 max-sm:px-10 ">
       {
 
         data ?
@@ -29,6 +29,7 @@ async function Menu() {
                 width={45}
                 height={45}
                 className='rounded-lg'
+                priority
               />
               <span className="max-sm:hidden">
                 {data?.user?.name}

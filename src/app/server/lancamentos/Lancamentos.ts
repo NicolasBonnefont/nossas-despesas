@@ -7,11 +7,12 @@ async function getLancamentos() {
 
     const data = await getServerSession(authOptions);
 
-    const email = data?.user?.email!
-
     if (!data) {
       throw Error('Não logado com sessão valida')
     }
+
+    const email = data?.user?.email!
+
 
     const lancamentos = await prisma.lancamentos.findMany({
       where: {
