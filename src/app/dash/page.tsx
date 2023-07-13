@@ -3,16 +3,11 @@ import Lancamentos from "@/app/components/lancamentos"
 import Totais from "@/app/components/totais"
 import { getServerSession } from "next-auth"
 import Link from "next/link"
-import { redirect } from "next/navigation"
 import { FiPlusCircle } from "react-icons/fi"
 
 async function Logado() {
 
   const session = await getServerSession(authOptions)
-
-  if (!session) {
-    redirect('/login')
-  }
 
   return (
     <>
