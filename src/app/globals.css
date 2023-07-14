@@ -13,3 +13,7 @@ html{
   border: 0;
   box-sizing: border-box;
 }
+
+.menu-superior{
+  z-index: 9999;
+}
