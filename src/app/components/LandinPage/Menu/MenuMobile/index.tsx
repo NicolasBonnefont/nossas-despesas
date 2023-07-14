@@ -1,5 +1,3 @@
-'use cliente'
-
 import { Dispatch, SetStateAction } from "react"
 import { FiXCircle } from "react-icons/fi"
 
