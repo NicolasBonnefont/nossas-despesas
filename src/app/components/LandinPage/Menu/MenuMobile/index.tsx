@@ -17,19 +17,19 @@ function MenuMobile({ setShowMenuMobile }: menuMobileProps) {
       />
 
       <div className="flex flex-1 flex-col items-center justify-around">
-        <a href="#hero">
+        <a onClick={() => setShowMenuMobile(false)} href="#hero">
           <p className="font-bold text-2xl underline underline-offset-2 text-white">Inicio</p>
         </a>
 
-        <a href="#funcionalidades">
+        <a onClick={() => setShowMenuMobile(false)} href="#funcionalidades">
           <p className="font-bold text-2xl underline underline-offset-2 text-white">Funcionalidades</p>
         </a>
 
-        <a href="#preco">
+        <a onClick={() => setShowMenuMobile(false)} href="#preco">
           <p className="font-bold text-2xl underline underline-offset-2 text-white">Preço</p>
         </a>
 
-        <a href="#contato">
+        <a onClick={() => setShowMenuMobile(false)} href="#contato">
           <p className="font-bold text-2xl underline underline-offset-2 text-white">Contato</p>
         </a>
       </div>
