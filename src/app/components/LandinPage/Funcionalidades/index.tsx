@@ -43,7 +43,7 @@ function Funcionalidades() {
           width='950'
         />
         <h1 className="text-white text-6xl max-md:text-2xl">
-          Realize lançamentos das duas contas parceladas! 👌
+          Realize lançamentos das suas contas parceladas! 👌
         </h1>
       </div>
 

@@ -29,7 +29,7 @@ function Precos() {
       </div>
 
       <a target='blank' href="https://buy.stripe.com/eVa3g9dNIdkjguc5km">
-        <div className=" flex flex-col bg-white rounded-xl shadow-lg w-80 h-96 hover:bg-gray-200 cursor-pointer " >
+        <div className=" flex flex-col bg-white rounded-xl shadow-lg w-80 h-96 hover:bg-gray-200 cursor-pointer" >
 
           <div className=" flex items-center justify-center w-full h-10 bg-blue-900 rounded-b-xl rounded-t-lg">
             <p className="text-yellow-200 font-bold">Melhor experiência</p>
