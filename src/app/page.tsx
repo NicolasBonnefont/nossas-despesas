@@ -6,6 +6,7 @@ import Footer from "./components/LandinPage/Footer/indes"
 import Funcionalidades from "./components/LandinPage/Funcionalidades"
 import Hero from "./components/LandinPage/Hero"
 import Menu from "./components/LandinPage/Menu"
+import Precos from "./components/LandinPage/Precos"
 
 
 async function Home() {
@@ -14,12 +15,14 @@ async function Home() {
     <div className="w-full min-h-screen bg-gray-950 ">
 
       <Menu />
-
+ 
       <Hero />
-{/* 
-      <Funcionalidades />
 
-      <Footer /> */}
+      <Funcionalidades /> 
+
+      <Precos/>
+
+      <Footer />
 
     </div>
   )

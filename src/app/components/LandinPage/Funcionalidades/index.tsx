@@ -6,10 +6,10 @@ import novoLancamento from '../../../../../public/landingpage/novo-lancamento.pn
 function Funcionalidades() {
   return (
 
-    <div id='funcionalidades' className="flex flex-col gap-32 items-center justify-center bg-gray-950 w-full min-h-[650px] h-auto px-32 py-20">
+    <div id='funcionalidades' className="flex flex-col gap-32 max-md:gap-10 items-center  bg-gray-950 w-full  h-auto px-32 max-md:px-10 py-20">
 
-      <div className="flex flex-col gap-10 items-center justify-center mb-10">
-        <h1 className=" text-white text-6xl">
+      <div className="flex flex-col gap-10 items-center justify-center mb-10 max-md:flex-wrap">
+        <h1 className=" text-white text-6xl max-md:text-2xl">
           Veja os totais das suas entradas e saidas !
         </h1>
 
@@ -21,8 +21,8 @@ function Funcionalidades() {
         />
       </div>
 
-      <div className="flex gap-10 items-center justify-center">
-        <h1 className=" text-white text-6xl">
+      <div className="flex gap-10 items-center justify-center  max-md:flex-wrap max-md:w-full">
+        <h1 className=" text-white text-6xl max-md:text-2xl">
           Acompanha todos os lançamentos previstos no mês! 😎
         </h1>
         <Image
@@ -34,7 +34,7 @@ function Funcionalidades() {
         />
       </div>
 
-      <div className="flex gap-10 items-center justify-center">
+      <div className="flex gap-10 items-center justify-center  max-md:flex-wrap">
         <Image
           src={novoLancamento}
           alt='Representa uma das funcionalidades do sistema que é ter os totais de entrada e saida'
@@ -42,8 +42,8 @@ function Funcionalidades() {
           className="rounded-lg"
           width='950'
         />
-        <h1 className=" text-white text-6xl">
-         Realize lançamentos das duas contas parceladas! 👌
+        <h1 className="text-white text-6xl max-md:text-2xl">
+          Realize lançamentos das duas contas parceladas! 👌
         </h1>
       </div>
 
