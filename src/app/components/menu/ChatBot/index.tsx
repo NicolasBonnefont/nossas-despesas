@@ -35,13 +35,14 @@ function ChatBot() {
   return (
     <Sheet>
       <SheetTrigger className="text-white bg-gray-200/10 p-3 hover:bg-gray-200/20  rounded-lg font-bold ">
-        Assistente Virtual
+        Assistente Virtual 🤖
       </SheetTrigger>
       <SheetContent className="flex flex-col w-full h-full  ">
         <SheetHeader>
-          <SheetTitle>Peça ajuda da IA para suas finanças !</SheetTitle>
+          <SheetTitle>Peça ajuda da IA para suas finanças ! 🤖 </SheetTitle>
           <SheetDescription>
-            Com base nas suas entradas e saidas, você poder pedir dicas de como poupar ou mesmo otimizar seus gasto !
+            Com base no seus lançamentos, você poder pedir dicas de como poupar,otimizar seus gastos e como melhorar
+            sua saúde financeira ! 
 
           </SheetDescription>
         </SheetHeader>

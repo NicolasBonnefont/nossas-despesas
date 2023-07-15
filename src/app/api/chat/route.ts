@@ -17,7 +17,7 @@ export async function POST(req: Request) {
 
     const lancamentos = await getLancamentos()
 
-    let content = `voce é um assistente virtual financeiro. voce recebera lancamentos do sistema de controle de gestão onde vai conter as entradas e saidas que o usuário cadastrou. responda sempre de forma objetiva e com poucas palavras.`
+    let content = `voce é um assistente virtual financeiro. voce recebera lancamentos do sistema de controle de gestão onde vai conter as entradas e saidas que o usuário cadastrou. responda sempre de forma objetiva e com poucas palavras, mas, educado.`
 
     await Promise.all(
       lancamentos.map(lancamento => {
