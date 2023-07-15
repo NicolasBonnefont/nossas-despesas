@@ -7,6 +7,8 @@ async function getLancamentos() {
 
     const data = await getServerSession(authOptions);
 
+    console.log(data)
+
     if (!data) {
       throw Error('Não logado com sessão valida')
     }

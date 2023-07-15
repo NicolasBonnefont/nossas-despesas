@@ -3,6 +3,7 @@ import { getServerSession } from "next-auth";
 import Image from "next/image";
 import BtnDeslogar from "./BtnDeslogar";
 import BtnLogar from "./BtnLogar";
+import ChatBot from "./ChatBot";
 
 async function Menu() {
   const data = await getServerSession(authOptions)
@@ -27,9 +28,14 @@ async function Menu() {
                 {data?.user?.name}
               </span>
 
+
+              <ChatBot />
+
             </div>
             <BtnDeslogar />
           </div>
+
+
 
           :
 
