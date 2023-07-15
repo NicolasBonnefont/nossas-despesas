@@ -1,4 +1,4 @@
-import { getLancamentos } from '@/app/server/lancamentos/Lancamentos'
+import { getLancamentos, getTotais } from '@/app/server/lancamentos/Lancamentos'
 import { OpenAIStream, StreamingTextResponse } from 'ai'
 import { Configuration, OpenAIApi } from 'openai-edge'
 
@@ -16,6 +16,9 @@ export async function POST(req: Request) {
     let { messages } = await req.json()
 
     const lancamentos = await getLancamentos()
+    const totais = await getTotais()
+
+
 
     let content = `voce é um assistente virtual financeiro. voce recebera lancamentos do sistema de controle de gestão onde vai conter as entradas e saidas que o usuário cadastrou. responda sempre de forma objetiva e com poucas palavras, mas, educado.`
 
@@ -29,6 +32,9 @@ export async function POST(req: Request) {
       }
       )
     )
+    content += ` total entradas: ${totais.total_entrada} `
+    content += ` total saidas: ${totais.total_saida} `
+    content += ` total geral: ${totais.total} `
 
     if (messages[0].role !== 'system') {
       messages = [

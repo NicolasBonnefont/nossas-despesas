@@ -2,6 +2,12 @@ import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 import prisma from "@/db/prisma";
 import { getServerSession } from "next-auth";
 
+type totaisProps ={
+  total_entrada: number
+  total_saida: number
+  total: number
+}
+
 async function getLancamentos() {
   try {
 
@@ -31,7 +37,7 @@ async function getLancamentos() {
   }
 }
 
-async function getTotais() {
+async function getTotais():Promise<totaisProps> {
 
   try {
     const data = await getServerSession(authOptions);
