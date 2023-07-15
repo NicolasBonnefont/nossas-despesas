@@ -34,7 +34,7 @@ export async function POST(req: Request) {
     )
     content += ` total entradas: ${totais.total_entrada} `
     content += ` total saidas: ${totais.total_saida} `
-    content += ` total geral: ${totais.total} `
+    content += ` saldo de entradas - saidas: ${totais.total} `
 
     if (messages[0].role !== 'system') {
       messages = [
@@ -42,6 +42,8 @@ export async function POST(req: Request) {
         ...messages,
       ]
     }
+
+    console.log(messages)
 
     const response = await openai.createChatCompletion({
       model: 'gpt-3.5-turbo',
