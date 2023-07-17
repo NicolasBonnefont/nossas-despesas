@@ -2,8 +2,7 @@ import { authOptions } from "@/app/api/auth/[...nextauth]/route"
 import Lancamentos from "@/app/components/lancamentos"
 import Totais from "@/app/components/totais"
 import { getServerSession } from "next-auth"
-import Link from "next/link"
-import { FiPlusCircle } from "react-icons/fi"
+import ButtonNovoLancamento from "./ButtonNovoLancamento"
 
 async function Logado() {
 
@@ -19,13 +18,7 @@ async function Logado() {
 
           <div className="flex justify-between items-center  text-white font-bold p-6 text-md">
             <p className="">Lançamento do mês:</p>
-
-            <Link href="/dash/novo-lancamento"
-              className=" flex items-center gap-2 p-4 text-sm text-white font-extrabold bg-green-500  rounded-lg shadow-md hover:bg-green-400">
-              Novo Lançamento
-              <FiPlusCircle />
-            </Link>
-
+            <ButtonNovoLancamento />
           </div>
 
           <Lancamentos />
