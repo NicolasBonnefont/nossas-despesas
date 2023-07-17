@@ -12,7 +12,15 @@ import PostLancamento from "../../server/lancamentos/postLancamento"
 
 function NovoLancamento() {
 
-  const { register, handleSubmit } = useForm<lancamentos>();
+  const { register, handleSubmit, watch } = useForm<lancamentos>({
+    defaultValues: {
+      total_parcelas: 0
+    }
+  });
+
+
+
+  const totalParcelas = watch("total_parcelas");
 
   const [isLoading, setIsLoading] = useState(false)
 
@@ -60,10 +68,13 @@ function NovoLancamento() {
             min: 0
           })} type='number' className="rounded-xl h-12 p-2 text-black" placeholder="Valor..." />
 
-          <label className="inline-flex items-center cursor-pointer my-4">
-            <span className="mr-4 text-white">Repete todos os meses</span>
-            <input {...register('repete_todos_meses')} type="checkbox" className="rounded cursor-pointer form-checkbox h-5 w-5 " />
-          </label>
+          {
+            totalParcelas == 0 &&
+            <label className="inline-flex items-center cursor-pointer my-4">
+              <span className="mr-4 text-white">Repete todos os meses</span>
+              <input {...register('repete_todos_meses')} disabled={totalParcelas > 0} type="checkbox" className="rounded cursor-pointer form-checkbox h-5 w-5 " />
+            </label>
+          }
 
           <span>Selecione o Tipo:</span>
           <select required {...register('tipo')} className="rounded-xl h-12 p-2 text-black cursor-pointer" placeholder="Selecione uma opção">

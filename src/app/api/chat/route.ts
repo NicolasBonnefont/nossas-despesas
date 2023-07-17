@@ -18,23 +18,21 @@ export async function POST(req: Request) {
     const lancamentos = await getLancamentos()
     const totais = await getTotais()
 
-
-
     let content = `voce é um assistente virtual financeiro. voce recebera lancamentos do sistema de controle de gestão onde vai conter as entradas e saidas que o usuário cadastrou. responda sempre de forma objetiva e com poucas palavras, mas, educado.`
 
     await Promise.all(
       lancamentos.map(lancamento => {
         if (lancamento.tipo == 'entrada') {
-          content += `entrada: descricao: ${lancamento.descricao} valor: ${lancamento.valor} `
+          content += `entrada: descricao: ${lancamento.descricao} valor: ${lancamento.valor} reais`
         } else {
-          content += `saida: descricao: ${lancamento.descricao} valor: ${lancamento.valor} `
+          content += `saida: descricao: ${lancamento.descricao} valor: ${lancamento.valor} reais`
         }
       }
       )
     )
-    content += ` total entradas: ${totais.total_entrada} `
-    content += ` total saidas: ${totais.total_saida} `
-    content += ` saldo de entradas - saidas: ${totais.total} `
+    content += ` total entradas: ${totais.total_entrada} reais`
+    content += ` total saidas: ${totais.total_saida} reais`
+    content += ` saldo de entradas - saidas: ${totais.total} reais`
 
     if (messages[0].role !== 'system') {
       messages = [
