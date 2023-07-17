@@ -40,8 +40,9 @@ function ChatBot() {
         <SheetHeader>
           <SheetTitle>Peça ajuda da IA para suas finanças ! 🤖 </SheetTitle>
           <SheetDescription>
-            Com base no seus lançamentos, você poder pedir dicas de como poupar,otimizar seus gastos e como melhorar
-            sua saúde financeira ! Pergunte seu saldo ou peça alguma dica referente ao seus gasto ! Fique a vontade 😉
+            Com base nos seus lançamentos, você pode pedir dicas de como poupar,
+            otimizar seus gastos e como melhorar sua saúde financeira! Pergunte seu
+            saldo ou peça alguma dica referente aos seus lançamentos! Fique à vontade. 😉
           </SheetDescription>
         </SheetHeader>
 
