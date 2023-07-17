@@ -1,12 +1,8 @@
-import { authOptions } from "@/app/api/auth/[...nextauth]/route"
 import Lancamentos from "@/app/components/lancamentos"
 import Totais from "@/app/components/totais"
-import { getServerSession } from "next-auth"
 import ButtonNovoLancamento from "./ButtonNovoLancamento"
 
 async function Logado() {
-
-  const session = await getServerSession(authOptions)
 
   return (
     <>
