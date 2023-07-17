@@ -1,14 +1,14 @@
 'use client'
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { ScrollBar } from "@/components/ui/scroll-area";
 import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
-import { ScrollArea, ScrollAreaViewport } from "@radix-ui/react-scroll-area";
-import { useEffect, useState } from "react";
-import { useChat } from 'ai/react'
+import { ScrollArea } from "@radix-ui/react-scroll-area";
+import { useChat } from 'ai/react';
 import { useSession } from "next-auth/react";
 import Image from "next/image";
-import robo from '../../../../../public/chat/robo.png'
-import { ScrollBar } from "@/components/ui/scroll-area";
+import { useEffect } from "react";
+import robo from '../../../../../public/chat/robo.png';
 
 function ChatBot() {
 
@@ -27,7 +27,6 @@ function ChatBot() {
     }
   }
 
-
   useEffect(() => {
     scrollToBottom();
   }, [messages]);
@@ -42,8 +41,7 @@ function ChatBot() {
           <SheetTitle>Peça ajuda da IA para suas finanças ! 🤖 </SheetTitle>
           <SheetDescription>
             Com base no seus lançamentos, você poder pedir dicas de como poupar,otimizar seus gastos e como melhorar
-            sua saúde financeira ! 
-
+            sua saúde financeira ! Pergunte seu saldo ou peça alguma dica referente ao seus gasto ! Fique a vontade 😉
           </SheetDescription>
         </SheetHeader>
 
@@ -64,7 +62,6 @@ function ChatBot() {
                           height='40'
                           className="w-10 h-10"
                         />
-
                         <p >
                           <span className="block font-bold">
                             {data?.user?.name}:
@@ -78,7 +75,6 @@ function ChatBot() {
                           alt='Avatar'
                           className="w-10 h-10"
                         />
-
                         <p >
                           <span className="block font-bold">Assistente:
                           </span>{message.content}

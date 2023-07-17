@@ -18,8 +18,6 @@ function NovoLancamento() {
     }
   });
 
-
-
   const totalParcelas = watch("total_parcelas");
 
   const [isLoading, setIsLoading] = useState(false)

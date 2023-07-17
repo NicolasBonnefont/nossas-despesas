@@ -26,8 +26,9 @@ function Menu() {
 
       <div className=" flex gap-6 max-md:hidden">
         <a href="#funcionalidades"><p className=" underline-offset-2 hover:underline cursor-pointer">Funcionalidades</p></a>
-        <p className=" underline-offset-2 hover:underline cursor-pointer">Preços</p>
-        <p className=" underline-offset-2 hover:underline cursor-pointer">Contado</p>
+        <a href="#preco"><p className=" underline-offset-2 hover:underline cursor-pointer">Preços</p></a>
+        <a href="mailto:nicolas.7l@hotmail.com"><p className=" underline-offset-2 hover:underline cursor-pointer">Contado</p></a>
+
       </div>
 
       <Link href='/login' className="max-md:hidden">

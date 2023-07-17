@@ -28,14 +28,11 @@ async function Menu() {
                 {data?.user?.name}
               </span>
 
-
               <ChatBot />
 
             </div>
             <BtnDeslogar />
           </div>
-
-
 
           :
 
@@ -46,7 +43,6 @@ async function Menu() {
 
     </menu>
   )
-
 
 }
 export default Menu
