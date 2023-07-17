@@ -14,7 +14,7 @@ async function Totais() {
   const totais = await getTotais()
 
   return (
-    <div className="flex justify-evenly max-xl:flex-wrap gap-4 max-sm:gap-0">
+    <div className="text-black flex justify-evenly max-xl:flex-wrap gap-4 max-sm:gap-0">
       <Card
         titulo='Entrada'
         valor={totais?.total_entrada}

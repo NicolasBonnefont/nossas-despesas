@@ -32,7 +32,7 @@ function ChatBot() {
   }, [messages]);
 
   return (
-    <Sheet>
+    <Sheet >
       <SheetTrigger className="text-white bg-gray-200/10 p-3 hover:bg-gray-200/20  rounded-lg font-bold ">
         Assistente Virtual 🤖
       </SheetTrigger>
@@ -46,13 +46,13 @@ function ChatBot() {
           </SheetDescription>
         </SheetHeader>
 
-        <div className=" h-full w-full border border-sky-500 bg-gray-50 rounded-md overflow-auto " >
+        <div className=" h-full w-full border border-sky-500 rounded-md overflow-auto " >
 
           <ScrollArea className="w-full h-full scroll-area">
             <ScrollBar />
             {
               messages.map(message => (
-                <div key={message.id} className='text-gray-800 p-4 '>
+                <div key={message.id} className='text-gray-200 p-4 '>
                   {
                     message.role == 'user' ?
                       <div className="flex gap-2 ">
@@ -97,6 +97,7 @@ function ChatBot() {
             placeholder="Pergunte aqui..."
             value={input}
             onChange={handleInputChange}
+            autoFocus={false}
           />
           <Button type='submit' className="w-30">Perguntar</Button>
         </form>
