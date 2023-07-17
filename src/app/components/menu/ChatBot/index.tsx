@@ -98,7 +98,6 @@ function ChatBot() {
             value={input}
             onChange={handleInputChange}
           />
-
           <Button type='submit' className="w-30">Perguntar</Button>
         </form>
 

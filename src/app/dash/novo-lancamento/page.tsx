@@ -3,7 +3,7 @@
 import { lancamentos } from "@prisma/client"
 import Image from "next/image"
 import { useRouter } from "next/navigation"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { SubmitHandler, useForm } from "react-hook-form"
 import { FiArrowLeft } from "react-icons/fi"
 import { BounceLoader } from "react-spinners"
@@ -12,13 +12,19 @@ import PostLancamento from "../../server/lancamentos/postLancamento"
 
 function NovoLancamento() {
 
-  const { register, handleSubmit, watch } = useForm<lancamentos>({
+  const { register, handleSubmit, watch,  } = useForm<lancamentos>({
     defaultValues: {
       total_parcelas: 0
     }
   });
 
   const totalParcelas = watch("total_parcelas");
+
+  const tipo_lancamento = watch("tipo");
+
+  useEffect(() => {
+    console.log(totalParcelas)
+  }, [totalParcelas])
 
   const [isLoading, setIsLoading] = useState(false)
 
@@ -55,16 +61,28 @@ function NovoLancamento() {
           <span>Descrição:</span>
           <input required {...register('descricao')} className="rounded-xl h-12 p-2 text-black" placeholder="Descrição..." maxLength={20} />
 
+          <span>Selecione o Tipo:</span>
+          <select required {...register('tipo')} className="rounded-xl h-12 p-2 text-black cursor-pointer" placeholder="Selecione uma opção">
+            <option value="">Selecione uma opção</option>
+            <option value="saida">Saida</option>
+            <option value="entrada">Entrada</option>
+          </select>
+
           <span>Valor:</span>
           <input required {...register('valor', {
             valueAsNumber: true
           })} className="rounded-xl h-12 p-2 text-black" placeholder="Valor..." type='number' />
 
-          <span>Parcelas:</span>
-          <input required minLength={0} min={0} {...register('total_parcelas', {
-            valueAsNumber: true,
-            min: 0
-          })} type='number' className="rounded-xl h-12 p-2 text-black" placeholder="Valor..." />
+          {
+            tipo_lancamento == "saida" &&
+            <>
+              <span>Parcelas:</span>
+              <input required minLength={0} min={0} {...register('total_parcelas', {
+                valueAsNumber: true,
+                min: 0
+              })} type='number' className="rounded-xl h-12 p-2 text-black" placeholder="Valor..." />
+            </>
+          }
 
           {
             totalParcelas == 0 &&
@@ -73,13 +91,6 @@ function NovoLancamento() {
               <input {...register('repete_todos_meses')} disabled={totalParcelas > 0} type="checkbox" className="rounded cursor-pointer form-checkbox h-5 w-5 " />
             </label>
           }
-
-          <span>Selecione o Tipo:</span>
-          <select required {...register('tipo')} className="rounded-xl h-12 p-2 text-black cursor-pointer" placeholder="Selecione uma opção">
-            <option value="">Selecione uma opção</option>
-            <option value="saida">Saida</option>
-            <option value="entrada">Entrada</option>
-          </select>
 
           <button className="flex items-center justify-center rounded-xl h-12 bg-green-600 mt-8 font-bold">
             {

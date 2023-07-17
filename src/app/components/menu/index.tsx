@@ -1,6 +1,7 @@
 import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 import { getServerSession } from "next-auth";
 import Image from "next/image";
+import Link from "next/link";
 import BtnDeslogar from "./BtnDeslogar";
 import BtnLogar from "./BtnLogar";
 import ChatBot from "./ChatBot";
@@ -16,14 +17,16 @@ async function Menu() {
 
           <div className="flex-1 flex items-center justify-between text-end text-white text-md ">
             <div className="flex items-center gap-4">
-              <Image
-                src={data!.user!.image!}
-                alt='Image paerfil'
-                width={45}
-                height={45}
-                className='rounded-lg'
-                priority
-              />
+              <Link href='/dash'>
+                <Image
+                  src={data!.user!.image!}
+                  alt='Image paerfil'
+                  width={45}
+                  height={45}
+                  className='rounded-lg'
+                  priority
+                />
+              </Link>
               <span className="max-sm:hidden">
                 {data?.user?.name}
               </span>
