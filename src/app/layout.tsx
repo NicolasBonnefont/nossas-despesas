@@ -1,5 +1,6 @@
 import AdSense from './adsense'
 import Provider from './components/Providers/Provider'
+import { Analytics } from '@vercel/analytics/react';
 import './globals.css'
 
 export const metadata = {
@@ -16,6 +17,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <Provider>
           {children}
         </Provider>
+        <Analytics />
       </body>
     </html>
   )
