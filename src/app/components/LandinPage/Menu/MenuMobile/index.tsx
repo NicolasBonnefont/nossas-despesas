@@ -28,10 +28,6 @@ function MenuMobile({ setShowMenuMobile }: menuMobileProps) {
         <a onClick={() => setShowMenuMobile(false)} href="#preco">
           <p className="font-bold text-2xl underline underline-offset-2 text-white">Preço</p>
         </a>
-
-        <a onClick={() => setShowMenuMobile(false)} href="#contato">
-          <p className="font-bold text-2xl underline underline-offset-2 text-white">Contato</p>
-        </a>
       </div>
 
     </div>

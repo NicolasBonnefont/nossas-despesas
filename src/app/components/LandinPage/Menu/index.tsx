@@ -24,8 +24,6 @@ function Menu() {
       <div className=" flex gap-6 max-md:hidden">
         <a href="#funcionalidades"><p className=" underline-offset-2 hover:underline cursor-pointer">Funcionalidades</p></a>
         <a href="#preco"><p className=" underline-offset-2 hover:underline cursor-pointer">Preços</p></a>
-        <a href="mailto:nicolas.7l@hotmail.com"><p className=" underline-offset-2 hover:underline cursor-pointer">Contado</p></a>
-
       </div>
 
       <Link href='/login' target='_blank' prefetch className="max-md:hidden">
