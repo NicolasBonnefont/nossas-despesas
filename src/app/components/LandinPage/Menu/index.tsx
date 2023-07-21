@@ -1,4 +1,3 @@
-import { Sheet, SheetTrigger, SheetContent, SheetHeader, SheetTitle, SheetDescription } from "@/components/ui/sheet"
 import Image from "next/image"
 import Link from "next/link"
 import money from '../../../../../public/novo-lancamento/money.png'
@@ -20,8 +19,6 @@ function Menu() {
           />
         </div>
 
-
-
       </a>
 
       <div className=" flex gap-6 max-md:hidden">
@@ -31,7 +28,7 @@ function Menu() {
 
       </div>
 
-      <Link href='/login' className="max-md:hidden">
+      <Link href='/login' target='_blank' prefetch className="max-md:hidden">
         <p className="font-light underline-offset-2 underline cursor-pointer">Login</p>
       </Link>
 

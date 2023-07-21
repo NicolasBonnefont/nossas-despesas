@@ -12,7 +12,7 @@ function Hero() {
           <h1 className="text-6xl max-2xl:text-4xl max-xl:text-4xl max-md:text-2xl max-sm:text-3xl text-[#BCE3A6] font-extrabold ">
             Organize suas despesas de forma prática e sem dificuldades !
           </h1>
-          <Link href='/login' className="flex items-center justify-center text-white text-2xl font-bold w-full bg-[#DF8722] hover:bg-[#df8722e0] h-16 rounded-md">
+          <Link href='/login' target='_blank' prefetch className="flex items-center justify-center text-white text-2xl font-bold w-full bg-[#DF8722] hover:bg-[#df8722e0] h-16 rounded-md">
             COMEÇAR AGORA
           </Link>
         </div>
