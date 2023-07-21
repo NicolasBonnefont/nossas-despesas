@@ -16,7 +16,7 @@ function Hero() {
             COMEÇAR AGORA
           </Link>
         </div>
-
+        
         <Image
           src={hero}
           alt='Hero image'
