@@ -4,8 +4,6 @@ function Precos() {
   return (
 
     <div id='preco' className="text-black flex flex-1 items-center justify-center w-full min-h-[60%] gap-8 max-md:flex-wrap py-24 bg-gray-900">
-
-
       <Link href="/login">
         <div className="flex flex-col bg-white rounded-xl shadow-lg w-80  min-h-[500px] hover:bg-gray-200 cursor-pointer  " >
 
