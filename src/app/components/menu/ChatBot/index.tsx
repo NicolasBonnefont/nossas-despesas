@@ -1,8 +1,6 @@
 'use client'
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 import { ScrollBar } from "@/components/ui/scroll-area";
-import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
+import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 import { ScrollArea } from "@radix-ui/react-scroll-area";
 import { useChat } from 'ai/react';
 import { useSession } from "next-auth/react";
@@ -39,11 +37,11 @@ function ChatBot() {
       <SheetContent className="flex flex-col w-full h-full  ">
         <SheetHeader>
           <SheetTitle>Peça ajuda da IA para suas finanças ! 🤖 </SheetTitle>
-          <SheetDescription>
+          <p className="text-white/70 font-light text-start">
             Com base nos seus lançamentos, você pode pedir dicas de como poupar,
             otimizar seus gastos e como melhorar sua saúde financeira! Pergunte seu
             saldo ou peça alguma dica referente aos seus lançamentos! Fique à vontade. 😉
-          </SheetDescription>
+          </p>
         </SheetHeader>
 
         <div className=" h-full w-full border border-sky-500 rounded-md overflow-auto " >
@@ -61,12 +59,13 @@ function ChatBot() {
                           alt='Avatar'
                           width='40'
                           height='40'
-                          className="w-10 h-10"
+                          className="w-10 h-10 rounded-md"
                         />
                         <p >
                           <span className="block font-bold">
                             {data?.user?.name}:
-                          </span>{message.content}
+                          </span>
+                          {message.content}
                         </p>
                       </div>
                       :
@@ -74,11 +73,12 @@ function ChatBot() {
                         <Image
                           src={robo}
                           alt='Avatar'
-                          className="w-10 h-10"
+                          className="w-10 h-10 rounded-md"
                         />
                         <p >
                           <span className="block font-bold">Assistente:
-                          </span>{message.content}
+                          </span>
+                          {message.content}
                         </p>
                       </div>
                   }
@@ -92,14 +92,16 @@ function ChatBot() {
         <form
           onSubmit={handleSubmit}
           className="flex  mt-auto gap-2 ">
-          <Input
-            className="bg-gray-100"
+          <input
+            className="bg-gray-100 rounded-md p-2 text-black w-full"
             placeholder="Pergunte aqui..."
             value={input}
             onChange={handleInputChange}
             autoFocus={false}
           />
-          <Button type='submit' className="w-30">Perguntar</Button>
+          <button type='submit' className="w-30 h-12 p-2 rounded-md bg-gray-800 hover:bg-gray-900" >
+            Perguntar
+          </button>
         </form>
 
       </SheetContent>
