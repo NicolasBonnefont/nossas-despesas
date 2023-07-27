@@ -21,7 +21,7 @@ function Hero() {
           src={hero}
           alt='Hero image'
           className="w-[650px] max-2xl:w-[450px] max-xl:w-[400px] max-md:hidden"
-          priority
+          priority={true}          
         />
 
       </div>
