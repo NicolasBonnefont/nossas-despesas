@@ -36,15 +36,12 @@ export async function GET(req: Request, res: Response) {
 
   try {
 
-    console.log('ENTREI NO GET')
-
     const sig = req.headers.get('stripe-signature');
 
     let event;
 
     try {
       event = stripe.webhooks.constructEvent(req.body, sig, endpointSecret);
-      console.log(event)
     } catch (err) {
       console.log(err)
 
