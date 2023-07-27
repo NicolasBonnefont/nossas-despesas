@@ -45,10 +45,6 @@ function ChatBot() {
         </SheetHeader>
 
         <div className=" h-full w-full border border-sky-500 rounded-md overflow-auto " >
-          
-          {
-            console.log(messages.length)
-          }
 
           {
             messages.length > 0 &&
@@ -94,6 +90,7 @@ function ChatBot() {
               }
             </ScrollArea>
           }
+          
         </div>
 
         <form
