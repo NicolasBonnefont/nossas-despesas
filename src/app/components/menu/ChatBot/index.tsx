@@ -44,10 +44,8 @@ function ChatBot() {
           </p>
         </SheetHeader>
 
-        <div className=" h-full w-full border border-sky-500 rounded-md overflow-auto " >
-
-          {
-            messages.length > 0 &&
+        {          
+          <div className=" h-full max-sm:h-auto w-full border border-sky-500 rounded-md overflow-auto " >
             <ScrollArea className="w-full h-full scroll-area">
               <ScrollBar />
               {
@@ -89,9 +87,8 @@ function ChatBot() {
                 ))
               }
             </ScrollArea>
-          }
-          
-        </div>
+          </div>
+        }
 
         <form
           onSubmit={handleSubmit}
