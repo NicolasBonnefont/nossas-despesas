@@ -45,7 +45,7 @@ export default function ButtonNovoLancamento() {
 
       await UpdateLancamentos(data)
         .then(response => {
-          chanegStateModal()
+          chanegStateModal(false)
         })
         .catch(error => {
           console.log(error)
@@ -56,7 +56,7 @@ export default function ButtonNovoLancamento() {
 
       await PostLancamento(data)
         .then(response => {
-          chanegStateModal()
+          chanegStateModal(false)
         })
         .catch(error => {
           console.log(error)
