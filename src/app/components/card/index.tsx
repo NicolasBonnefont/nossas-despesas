@@ -1,4 +1,5 @@
 import { ReactElement } from "react";
+import { FiAlertTriangle } from "react-icons/fi";
 
 type cardProps = {
   titulo: string
@@ -16,7 +17,9 @@ function Card({ Icone, titulo, valor }: cardProps) {
         {Icone}
       </div>
 
-      <p className="text-2xl max-sm:text-xl font-bold text-gray-800">R$ {valor}</p>
+      <p className={`flex items-center gap-4 justify-center text-2xl max-sm:text-xl font-bold ${Number(valor) >= 0 ? "text-gray-800" : "text-red-500"}`}>
+        R$ {valor} {Number(valor) < 0 && <FiAlertTriangle />}
+      </p>
 
     </div>
   )

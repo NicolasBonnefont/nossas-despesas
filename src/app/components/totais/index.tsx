@@ -18,13 +18,13 @@ async function Totais() {
       <Card
         titulo='Entrada'
         valor={totais?.total_entrada}
-        Icone={<FiArrowUpCircle />}
+        Icone={<FiArrowDownCircle />}
       />
 
       <Card
         titulo="Saida"
         valor={totais?.total_saida}
-        Icone={<FiArrowDownCircle />}
+        Icone={<FiArrowUpCircle />}
       />
 
       <Card

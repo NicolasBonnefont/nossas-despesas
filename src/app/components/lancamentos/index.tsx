@@ -12,16 +12,14 @@ async function Lancamentos() {
     <div className="flex flex-col items-center gap-2 max-h-[60vh] overflow-auto p-6 ">
 
       {
-        lancamentos.length > 0 && lancamentos?.map(lancamento => (
-          <Link href={`/dash?editar=true&id=${lancamento.id}`} className="w-full cursor-pointer">
+        lancamentos.length > 0 && lancamentos?.map(lancamento => (          
             <CardLancamentos
               key={lancamento.id}
               id={lancamento.id}
               descricao={lancamento.descricao}
               valor={String(lancamento.valor)}
               tipo={lancamento.tipo}
-            />
-          </Link>
+            />    
         ))
       }
 

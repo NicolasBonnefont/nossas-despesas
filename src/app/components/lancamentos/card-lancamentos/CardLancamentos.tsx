@@ -1,8 +1,10 @@
 'use client'
 import RemoveLancamento from "@/app/server/lancamentos/removeLancamento";
+import Link from "next/link";
 import { useState } from "react";
-import { FiArrowDownCircle, FiArrowUpCircle, FiTrash2 } from "react-icons/fi";
+import { FiArrowDownCircle, FiArrowUpCircle, FiEdit, FiTrash2 } from "react-icons/fi";
 import { BounceLoader } from "react-spinners";
+import { DropdownMenuDemo } from "./DropDown";
 
 type cardProps = {
   id: number
@@ -30,14 +32,6 @@ function CardLancamentos({ descricao, valor, tipo, id }: cardProps) {
     <div className={`bg-white max-sm:text-sm font-bold flex w-full h-16 rounded-xl items-center p-8 ${tipo == 'saida' ? 'text-red-600' : 'text-green-600'}  hover:bg-gray-200`}>
 
       <div className="flex items-center gap-4">
-        <button disabled={loading} onClick={() => ExcluiLancamento(id)} className='flex items-center'>
-          {
-            loading ?
-              <BounceLoader size='24' color='red' />
-              :
-              <FiTrash2 className="cursor-pointer" color="red" />
-          }
-        </button>
         <p>{descricao}</p>
       </div>
 
@@ -45,10 +39,20 @@ function CardLancamentos({ descricao, valor, tipo, id }: cardProps) {
         <p>R$ {valor}</p>
         {
           tipo == 'saida' ?
-            <FiArrowDownCircle />
-            :
             <FiArrowUpCircle />
+            :
+            <FiArrowDownCircle />
         }
+
+        {
+          loading ? <BounceLoader size='24' color='red' />
+            :
+            <DropdownMenuDemo
+              ExcluiLancamento={ExcluiLancamento}
+              id={id}
+            />
+        }
+
       </div>
 
     </div>

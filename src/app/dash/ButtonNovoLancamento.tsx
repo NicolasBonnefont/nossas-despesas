@@ -21,11 +21,14 @@ export default function ButtonNovoLancamento() {
   const path = useSearchParams()
   const [isOpen, setIsOpen] = useState(false)
   const [isEdit, setIsEdit] = useState(false)
+  const [loading, setLoadgin] = useState(false)
 
-  const { register, handleSubmit, watch, reset, } = useForm<lancamentos>({
-    defaultValues: {
-      total_parcelas: 0
-    }
+  const defaultValues = {
+    total_parcelas: 0
+  }
+
+  const { register, handleSubmit, watch, reset, resetField } = useForm<lancamentos>({
+    defaultValues
   });
 
   const totalParcelas = watch("total_parcelas");
@@ -63,24 +66,33 @@ export default function ButtonNovoLancamento() {
   }
 
   function OpenAndReset() {
-    reset()
+    reset(defaultValues)
     setIsLoading(false)
     setIsOpen(true)
+    setIsEdit(false)
   }
 
-  function chanegStateModal() {
-    setIsLoading(false)
-    setIsOpen(false)
-    router.refresh()
-    router.push('/dash')
+  function chanegStateModal(open: boolean) {
+    setIsOpen(open)
+
+    if (!open) {
+      reset(defaultValues)
+      setIsLoading(false)
+      setLoadgin(false)
+      router.refresh()
+      router.push('/dash')
+    }
+
   }
 
   async function igualaLancamento(id: number) {
 
+    setLoadgin(true)
+
     const busca_lancamento = await getUmLancamento(id)
 
     if (!busca_lancamento) {
-      chanegStateModal()
+      chanegStateModal(false)
       return
     }
 
@@ -89,6 +101,8 @@ export default function ButtonNovoLancamento() {
         ...busca_lancamento
       })
     }
+
+    setLoadgin(false)
 
   }
 
@@ -112,8 +126,8 @@ export default function ButtonNovoLancamento() {
 
 
   return (
-    <Dialog open={isOpen} onOpenChange={chanegStateModal}>
-      <DialogTrigger asChild>
+    <Dialog open={isOpen} onOpenChange={chanegStateModal} >
+      <DialogTrigger asChild >
         <button onClick={OpenAndReset} className='bg-green-800 hover:bg-green-700 p-3 rounded-lg font-medium text-sm'>Novo Lançamento</button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-[600px] bg-gray-900 text-white" >
