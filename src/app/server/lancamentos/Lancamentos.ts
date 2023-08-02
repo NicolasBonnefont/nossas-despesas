@@ -1,8 +1,11 @@
+'use server'
+
 import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 import prisma from "@/db/prisma";
+import { lancamentos } from "@prisma/client";
 import { getServerSession } from "next-auth";
 
-type totaisProps ={
+type totaisProps = {
   total_entrada: number
   total_saida: number
   total: number
@@ -37,7 +40,7 @@ async function getLancamentos() {
   }
 }
 
-async function getTotais():Promise<totaisProps> {
+async function getTotais(): Promise<totaisProps> {
 
   try {
     const data = await getServerSession(authOptions);
@@ -142,4 +145,23 @@ async function getTotais():Promise<totaisProps> {
 
 }
 
-export { getLancamentos, getTotais }
+async function getUmLancamento(id: number): Promise<lancamentos | null> {
+
+  if (!id) {
+    return null
+  }
+
+  const lancamento = await prisma.lancamentos.findUnique({
+    where: {
+      id
+    }
+  })
+
+  if (!lancamento) {
+    return null
+  }
+
+
+  return lancamento
+}
+export { getLancamentos, getTotais, getUmLancamento };

@@ -1,6 +1,5 @@
 'use client'
 
-import { Button } from "@/components/ui/button";
 import {
   Dialog,
   DialogContent,
@@ -9,18 +8,20 @@ import {
   DialogTrigger
 } from "@/components/ui/dialog";
 import { lancamentos } from "@prisma/client";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { BounceLoader } from "react-spinners";
+import { getUmLancamento } from "../server/lancamentos/Lancamentos";
 import PostLancamento from "../server/lancamentos/postLancamento";
 
 export default function ButtonNovoLancamento() {
 
   const router = useRouter()
+  const path = useSearchParams()
   const [isOpen, setIsOpen] = useState(false)
 
-  const { register, handleSubmit, watch, reset } = useForm<lancamentos>({
+  const { register, handleSubmit, watch, reset, } = useForm<lancamentos>({
     defaultValues: {
       total_parcelas: 0
     }
@@ -29,10 +30,6 @@ export default function ButtonNovoLancamento() {
   const totalParcelas = watch("total_parcelas");
 
   const tipo_lancamento = watch("tipo");
-
-  useEffect(() => {
-    console.log(totalParcelas)
-  }, [totalParcelas])
 
   const [isLoading, setIsLoading] = useState(false)
 
@@ -57,8 +54,41 @@ export default function ButtonNovoLancamento() {
     setIsOpen(true)
   }
 
+  function chanegStateModal() {
+    setIsOpen(false)
+    router.push('/dash')
+  }
+
+  async function igualaLancamento(id: number) {
+
+    const busca_lancamento = await getUmLancamento(id)
+
+      if (busca_lancamento) {
+       reset({
+         ...busca_lancamento
+       })
+     } 
+
+  }
+
+  useEffect(() => {
+
+    const search = path.get('editar')
+    const id = path.get('id')
+
+    if (search == 'true') {
+      setIsOpen(true)
+    }
+
+    if (id !== '' && id) {
+      igualaLancamento(Number(id))
+    }
+
+  }, [path])
+
+
   return (
-    <Dialog open={isOpen} onOpenChange={setIsOpen}>
+    <Dialog open={isOpen} onOpenChange={chanegStateModal}>
       <DialogTrigger asChild>
         <button onClick={OpenAndReset} className='bg-green-800 hover:bg-green-700 p-3 rounded-lg font-medium text-sm'>Novo Lançamento</button>
       </DialogTrigger>
