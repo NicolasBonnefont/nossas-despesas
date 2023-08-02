@@ -13,13 +13,14 @@ import { useEffect, useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { BounceLoader } from "react-spinners";
 import { getUmLancamento } from "../server/lancamentos/Lancamentos";
-import PostLancamento from "../server/lancamentos/postLancamento";
+import { PostLancamento, UpdateLancamentos } from "../server/lancamentos/postLancamento";
 
 export default function ButtonNovoLancamento() {
 
   const router = useRouter()
   const path = useSearchParams()
   const [isOpen, setIsOpen] = useState(false)
+  const [isEdit, setIsEdit] = useState(false)
 
   const { register, handleSubmit, watch, reset, } = useForm<lancamentos>({
     defaultValues: {
@@ -37,15 +38,28 @@ export default function ButtonNovoLancamento() {
 
     setIsLoading(true)
 
-    await PostLancamento(data)
-      .then(response => {
-        setIsOpen(false)
-        router.refresh()
-      })
-      .catch(error => {
-        console.log(error)
-        setIsLoading(false)
-      })
+    if (isEdit) {
+
+      await UpdateLancamentos(data)
+        .then(response => {
+          chanegStateModal()
+        })
+        .catch(error => {
+          console.log(error)
+          setIsLoading(false)
+        })
+
+    } else {
+
+      await PostLancamento(data)
+        .then(response => {
+          chanegStateModal()
+        })
+        .catch(error => {
+          console.log(error)
+          setIsLoading(false)
+        })
+    }
   }
 
   function OpenAndReset() {
@@ -55,7 +69,9 @@ export default function ButtonNovoLancamento() {
   }
 
   function chanegStateModal() {
+    setIsLoading(false)
     setIsOpen(false)
+    router.refresh()
     router.push('/dash')
   }
 
@@ -63,11 +79,16 @@ export default function ButtonNovoLancamento() {
 
     const busca_lancamento = await getUmLancamento(id)
 
-      if (busca_lancamento) {
-       reset({
-         ...busca_lancamento
-       })
-     } 
+    if (!busca_lancamento) {
+      chanegStateModal()
+      return
+    }
+
+    if (busca_lancamento) {
+      reset({
+        ...busca_lancamento
+      })
+    }
 
   }
 
@@ -78,6 +99,9 @@ export default function ButtonNovoLancamento() {
 
     if (search == 'true') {
       setIsOpen(true)
+      setIsEdit(true)
+    } else {
+      setIsEdit(false)
     }
 
     if (id !== '' && id) {

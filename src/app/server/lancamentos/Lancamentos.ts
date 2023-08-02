@@ -161,7 +161,9 @@ async function getUmLancamento(id: number): Promise<lancamentos | null> {
     return null
   }
 
-
   return lancamento
 }
+
+
+
 export { getLancamentos, getTotais, getUmLancamento };

@@ -62,4 +62,17 @@ async function PostLancamento({ ...dados }: lancamentos) {
 
 }
 
-export default PostLancamento
+async function UpdateLancamentos(dados: lancamentos) {
+
+  await prisma.lancamentos.update({
+    where: {
+      id: dados.id
+    },
+    data: dados
+  })
+
+  return
+
+}
+
+export  {PostLancamento,UpdateLancamentos}
