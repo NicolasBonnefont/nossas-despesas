@@ -11,7 +11,7 @@ export const metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="pt-br">     
-      <body className='font-Poppins flex flex-1 flex-col bg-gray-900 w-full h-screen '>
+      <body className='font-Poppins flex flex-1 flex-col  w-full h-screen '>
         <Provider>
           {children}
         </Provider>
