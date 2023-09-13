@@ -13,19 +13,18 @@ function ChatBot() {
   const { messages, input, handleInputChange, handleSubmit } = useChat()
   const { data } = useSession()
 
-  const scrollArea = document.querySelector('.scroll-area') as HTMLElement
-
-  function scrollToBottom() {
-    if (scrollArea) {
-      const scrollOptions: ScrollIntoViewOptions = {
-        behavior: 'auto',
-        block: 'end',
-      };
-      scrollArea.lastElementChild?.scrollIntoView(scrollOptions);
-    }
-  }
-
   useEffect(() => {
+    const scrollArea = document.querySelector('.scroll-area') as HTMLElement
+
+    function scrollToBottom() {
+      if (scrollArea) {
+        const scrollOptions: ScrollIntoViewOptions = {
+          behavior: 'auto',
+          block: 'end',
+        };
+        scrollArea.lastElementChild?.scrollIntoView(scrollOptions);
+      }
+    }
     scrollToBottom();
   }, [messages]);
 
@@ -44,7 +43,7 @@ function ChatBot() {
           </p>
         </SheetHeader>
 
-        {          
+        {
           <div className=" h-full max-sm:h-auto w-full border border-sky-500 rounded-md overflow-auto " >
             <ScrollArea className="w-full h-full scroll-area">
               <ScrollBar />
