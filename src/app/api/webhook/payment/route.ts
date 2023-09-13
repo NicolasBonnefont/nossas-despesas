@@ -1,8 +1,7 @@
-
-const stripe = require('stripe')('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');
+const stripe = require('stripe')(process.env.StripeSecret);
 
 // This is your Stripe CLI webhook secret for testing your endpoint locally.
-const endpointSecret = "whsec_ca93dae62cbaf0238344f2f9bf0f241b541a8d61be395a5860c68d482c60fa0d";
+const endpointSecret = process.env.StripeEndPointSecret;
 
 export async function POST(req: Request, res: Response) {
 

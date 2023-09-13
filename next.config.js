@@ -10,7 +10,9 @@ const nextConfig = {
     NEXTAUTH_SECRET: process.env.NEXTAUTH_SECRET,
     URL:process.env.URL,
     GoogleClientID:process.env.GoogleClientID,
-    GoogleClientSecret:process.env.GoogleClientSecret
+    GoogleClientSecret:process.env.GoogleClientSecret,
+    StripeSecret:process.env.StripeSecret,
+    StripeEndPointSecret:process.env.StripeEndPointSecret
 },
 
 }

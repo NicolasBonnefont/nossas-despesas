@@ -10,10 +10,10 @@ export async function GET() {
 
   try {
     const data = await getServerSession(authOptions);
-/* 
-    if (!data) {
-      throw Error('Não logado com sessão valida')
-    } */
+    /* 
+        if (!data) {
+          throw Error('Não logado com sessão valida')
+        } */
 
     const email = data?.user?.email!
 
