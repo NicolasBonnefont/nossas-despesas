@@ -1,8 +1,7 @@
 'use client'
 import RemoveLancamento from "@/app/server/lancamentos/removeLancamento";
-import Link from "next/link";
 import { useState } from "react";
-import { FiArrowDownCircle, FiArrowUpCircle, FiEdit, FiTrash2 } from "react-icons/fi";
+import { FiArrowDownCircle, FiArrowUpCircle } from "react-icons/fi";
 import { BounceLoader } from "react-spinners";
 import { DropdownMenuDemo } from "./DropDown";
 

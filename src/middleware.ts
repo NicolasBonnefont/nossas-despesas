@@ -1,3 +1,3 @@
 export { default } from "next-auth/middleware"
 
-export const config = { matcher: ["/dash",'/dash/novo-lancamento'] }
+export const config = { matcher: ["/dash", '/dash/novo-lancamento'] }

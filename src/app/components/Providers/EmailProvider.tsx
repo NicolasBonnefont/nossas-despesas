@@ -1,6 +1,6 @@
 import { Session } from 'next-auth';
 import { useSession } from 'next-auth/react';
-import React, { createContext, Dispatch, SetStateAction, useEffect, useState } from 'react';
+import React, { createContext, Dispatch, SetStateAction, useState } from 'react';
 
 interface EmailContextProps {
   email: string;
@@ -22,7 +22,7 @@ export const EmailProvider = ({ children }: { children: React.ReactNode }) => {
 
   const [email, setEmail] = useState('');
 
-  const { data, status ,update} = useSession()
+  const { data, status, update } = useSession()
 
   return (
     <EmailContexto.Provider value={{ email, setEmail, status, data }}>

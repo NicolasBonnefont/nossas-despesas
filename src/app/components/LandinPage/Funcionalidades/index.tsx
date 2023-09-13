@@ -1,7 +1,7 @@
 import Image from "next/image"
-import totais from '../../../../../public/landingpage/totais.png'
 import lancamentos from '../../../../../public/landingpage/lancamentos.png'
 import novoLancamento from '../../../../../public/landingpage/novo-lancamento.png'
+import totais from '../../../../../public/landingpage/totais.png'
 
 function Funcionalidades() {
   return (

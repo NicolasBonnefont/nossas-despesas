@@ -1,6 +1,5 @@
 import Link from "next/link"
 
-
 function Footer() {
   return (
     <div className="flex flex-col w-full h-32 items-center justify-center text-sm text-white bg-gray-950">
@@ -12,7 +11,6 @@ function Footer() {
           </Link>
         </span>
       </p>
-
 
       <p>&copy; {new Date().getFullYear()}</p>
 

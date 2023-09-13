@@ -15,7 +15,6 @@ type props = {
 
 export function DropdownMenuDemo({ ExcluiLancamento, id }: props) {
 
-
   return (
     <DropdownMenu  >
       <DropdownMenuTrigger asChild className="bg-white text-white">
