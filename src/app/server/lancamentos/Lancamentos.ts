@@ -11,6 +11,11 @@ type totaisProps = {
   total: number
 }
 
+const dataAtual = new Date();
+const primeiroDiaDoMes = new Date(dataAtual.getFullYear(), dataAtual.getMonth(), 1);
+const ultimoDiaDoMes = new Date(dataAtual.getFullYear(), dataAtual.getMonth() + 1, 0);
+
+
 async function getLancamentos() {
   try {
 
@@ -22,14 +27,24 @@ async function getLancamentos() {
 
     const email = data?.user?.email!
 
-
+    //gte >=
+    //lte <=
     const lancamentos = await prisma.lancamentos.findMany({
       where: {
-        email_cliente: email,
-        data_parcela: {
-          lte: new Date(new Date().getFullYear(), new Date().getMonth() + 1, 0),
-          gte: new Date(new Date().getFullYear(), new Date().getMonth(), 1)
-        }
+        OR: [
+          {
+            email_cliente: email,
+            data_parcela: {
+              gte: primeiroDiaDoMes, // Maior ou igual ao primeiro dia do mês atual
+              lte: ultimoDiaDoMes,   // Menor ou igual ao último dia do mês atual
+            }
+          },
+          {
+            repete_todos_meses: true,
+            email_cliente: email,
+          }
+        ]
+
       }
     })
 
@@ -52,13 +67,22 @@ async function getTotais(): Promise<totaisProps> {
         valor: true
       },
       where: {
-        tipo: 'entrada',
-        email_cliente: email,
-        repete_todos_meses: true,
-        data_parcela: {
-          lte: new Date(new Date().getFullYear(), new Date().getMonth() + 1, 0),
-          gte: new Date(new Date().getFullYear(), new Date().getMonth(), 1)
-        }
+        OR: [
+          {
+            email_cliente: email,
+            data_parcela: {
+              gte: primeiroDiaDoMes, // Maior ou igual ao primeiro dia do mês atual
+              lte: ultimoDiaDoMes,   // Menor ou igual ao último dia do mês atual
+            },
+            tipo: 'entrada'
+          },
+          {
+            repete_todos_meses: true,
+            email_cliente: email,
+            tipo: 'entrada'
+          }
+        ]
+
       }
     })
 
@@ -71,8 +95,8 @@ async function getTotais(): Promise<totaisProps> {
         email_cliente: email,
         repete_todos_meses: false,
         created_at: {
-          lte: new Date(new Date().getFullYear(), new Date().getMonth() + 1, 0),
-          gte: new Date(new Date().getFullYear(), new Date().getMonth(), 1)
+          gte: primeiroDiaDoMes, // Maior ou igual ao primeiro dia do mês atual
+          lte: ultimoDiaDoMes,   // Menor ou igual ao último dia do mês atual
         }
       }
     })
@@ -86,8 +110,8 @@ async function getTotais(): Promise<totaisProps> {
         email_cliente: email,
         repete_todos_meses: true,
         data_parcela: {
-          lte: new Date(new Date().getFullYear(), new Date().getMonth() + 1, 0),
-          gte: new Date(new Date().getFullYear(), new Date().getMonth(), 1)
+          gte: primeiroDiaDoMes, // Maior ou igual ao primeiro dia do mês atual
+          lte: ultimoDiaDoMes,   // Menor ou igual ao último dia do mês atual
         }
       }
     })
@@ -103,8 +127,8 @@ async function getTotais(): Promise<totaisProps> {
           gte: 1
         },
         data_parcela: {
-          lte: new Date(new Date().getFullYear(), new Date().getMonth() + 1, 0),
-          gte: new Date(new Date().getFullYear(), new Date().getMonth(), 1)
+          gte: primeiroDiaDoMes, // Maior ou igual ao primeiro dia do mês atual
+          lte: ultimoDiaDoMes,   // Menor ou igual ao último dia do mês atual
         }
       }
     })
@@ -119,8 +143,8 @@ async function getTotais(): Promise<totaisProps> {
         total_parcelas: 0,
         repete_todos_meses: false,
         created_at: {
-          lte: new Date(new Date().getFullYear(), new Date().getMonth() + 1, 0),
-          gte: new Date(new Date().getFullYear(), new Date().getMonth(), 1)
+          gte: primeiroDiaDoMes, // Maior ou igual ao primeiro dia do mês atual
+          lte: ultimoDiaDoMes,   // Menor ou igual ao último dia do mês atual
         }
       }
     })

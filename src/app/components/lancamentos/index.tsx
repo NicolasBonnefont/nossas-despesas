@@ -18,6 +18,8 @@ async function Lancamentos() {
             descricao={lancamento.descricao}
             valor={String(lancamento.valor)}
             tipo={lancamento.tipo}
+            parcela_atual={lancamento.parcela_atual}
+            total_parcelas={lancamento.total_parcelas}
           />
         ))
       }

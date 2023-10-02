@@ -23,13 +23,14 @@ async function PostLancamento({ ...dados }: lancamentos) {
 
     if (dados.total_parcelas && dados.total_parcelas > 0) {
 
-      for (let index = 0; index <= dados.total_parcelas; index++) {
+      for (let index = 0; index < dados.total_parcelas; index++) {
         await prisma.lancamentos.create({
           data: {
             descricao: dados.descricao,
             tipo: dados.tipo,
             total_parcelas: dados.total_parcelas,
             valor: dados.valor,
+            parcela_atual: index +1,
             repete_todos_meses: false,
             email_cliente: busca_usuario?.email!,
             id_usuario: busca_usuario?.id!,

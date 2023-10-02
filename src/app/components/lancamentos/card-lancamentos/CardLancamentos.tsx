@@ -10,9 +10,11 @@ type cardProps = {
   descricao: string,
   valor: string
   tipo: 'entrada' | 'saida'
+  parcela_atual?: number | null
+  total_parcelas?: number | null
 }
 
-function CardLancamentos({ descricao, valor, tipo, id }: cardProps) {
+function CardLancamentos({ descricao, valor, tipo, id, parcela_atual, total_parcelas }: cardProps) {
 
   const [loading, setLoading] = useState(false)
 
@@ -33,6 +35,15 @@ function CardLancamentos({ descricao, valor, tipo, id }: cardProps) {
       <div className="flex items-center gap-4">
         <p>{descricao}</p>
       </div>
+
+
+      {
+        parcela_atual &&
+
+        <div className="flex items-center gap-4 ml-4">
+          <p>{parcela_atual}/{total_parcelas}</p>
+        </div>
+      }
 
       <div className="ml-auto flex items-center gap-4 " >
         <p>R$ {valor}</p>
