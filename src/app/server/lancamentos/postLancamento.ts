@@ -70,12 +70,13 @@ async function PostLancamento({ ...dados }: lancamentos) {
 
 async function UpdateLancamentos(dados: lancamentos) {
 
-  await prisma.lancamentos.update({
+  await prisma.lancamentos.deleteMany({
     where: {
-      id: dados.id
-    },
-    data: dados
+      id_doc: dados.id_doc
+    }
   })
+
+  await PostLancamento(dados)
 
   return
 
