@@ -1,4 +1,5 @@
 'use client'
+
 import RemoveLancamento from "@/app/server/lancamentos/removeLancamento";
 import { useState } from "react";
 import { FiArrowDownCircle, FiArrowUpCircle } from "react-icons/fi";
@@ -11,18 +12,19 @@ type cardProps = {
   valor: string
   tipo: 'entrada' | 'saida'
   parcela_atual?: number | null
-  total_parcelas?: number | null
+  total_parcelas?: number | null,
+  id_doc: string
 }
 
-function CardLancamentos({ descricao, valor, tipo, id, parcela_atual, total_parcelas }: cardProps) {
+function CardLancamentos({ descricao, valor, tipo, id, parcela_atual, total_parcelas, id_doc }: cardProps) {
 
   const [loading, setLoading] = useState(false)
 
-  async function ExcluiLancamento(id: number) {
+  async function ExcluiLancamento() {
 
     setLoading(true)
 
-    await RemoveLancamento(id)
+    await RemoveLancamento(id_doc)
       .catch(error => {
         location.reload()
       })

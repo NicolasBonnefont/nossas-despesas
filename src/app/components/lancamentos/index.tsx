@@ -20,6 +20,7 @@ async function Lancamentos() {
             tipo={lancamento.tipo}
             parcela_atual={lancamento.parcela_atual}
             total_parcelas={lancamento.total_parcelas}
+            id_doc={lancamento.id_doc}
           />
         ))
       }

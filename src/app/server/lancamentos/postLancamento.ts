@@ -6,10 +6,13 @@ import { lancamentos } from "@prisma/client";
 import { addMonths } from "date-fns";
 import { getServerSession } from "next-auth";
 import { revalidatePath, revalidateTag } from "next/cache";
+import { v4 as uuidv4 } from 'uuid'
 
 async function PostLancamento({ ...dados }: lancamentos) {
 
   try {
+
+    const uuid = uuidv4()
 
     const data = await getServerSession(authOptions);
 
@@ -30,11 +33,12 @@ async function PostLancamento({ ...dados }: lancamentos) {
             tipo: dados.tipo,
             total_parcelas: dados.total_parcelas,
             valor: dados.valor,
-            parcela_atual: index +1,
+            parcela_atual: index + 1,
             repete_todos_meses: false,
             email_cliente: busca_usuario?.email!,
             id_usuario: busca_usuario?.id!,
-            data_parcela: addMonths(new Date(), index)
+            data_parcela: addMonths(new Date(), index),
+            id_doc: uuid
           }
         })
       }
@@ -48,7 +52,8 @@ async function PostLancamento({ ...dados }: lancamentos) {
           valor: dados.valor,
           repete_todos_meses: dados.repete_todos_meses,
           email_cliente: busca_usuario?.email!,
-          id_usuario: busca_usuario?.id!
+          id_usuario: busca_usuario?.id!,
+          id_doc: uuid
         }
       })
     }
@@ -76,4 +81,4 @@ async function UpdateLancamentos(dados: lancamentos) {
 
 }
 
-export  {PostLancamento,UpdateLancamentos}
+export { PostLancamento, UpdateLancamentos }

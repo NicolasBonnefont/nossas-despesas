@@ -11,6 +11,7 @@ model lancamentos {
   id                 Int                 @id @default(autoincrement())
   email_cliente      String
   descricao          String
+  id_doc             String
   valor              Decimal
   total_parcelas     Int
   parcela_atual      Int?
@@ -22,6 +23,7 @@ model lancamentos {
   emails_permitidos  emails_permitidos[]
   usuario            usuario?            @relation(fields: [id_usuario], references: [id])
   id_usuario         Int?
+
 }
 
 model usuario {

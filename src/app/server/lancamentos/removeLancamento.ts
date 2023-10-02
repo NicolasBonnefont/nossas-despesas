@@ -2,18 +2,14 @@
 
 import prisma from "@/db/prisma"
 import { revalidatePath, revalidateTag } from "next/cache"
-import { redirect } from "next/navigation"
 
-async function RemoveLancamento(id: number) {
+async function RemoveLancamento(id_doc: string) {
   try {
 
-    await prisma.lancamentos.delete({
+    await prisma.lancamentos.deleteMany({
       where: {
-        id
+        id_doc
       },
-      include: {
-        usuario: true
-      }
     })
 
     revalidatePath('/dash')
