@@ -13,7 +13,7 @@ async function Logado() {
           <Totais />
 
           <div className="flex justify-between items-center  text-white font-bold p-6 text-md">
-            <p className="">Lançamento do mês:</p>
+            <p className="">Lançamentos do mês:</p>
             <ButtonNovoLancamento />
           </div>
 

@@ -2,11 +2,6 @@ import { getTotais } from "@/app/server/lancamentos/Lancamentos"
 import { FiArrowDownCircle, FiArrowUpCircle, FiDollarSign } from "react-icons/fi"
 import Card from "../card"
 
-type totaisProps = {
-  total_entrada: number,
-  total_saida: number
-  total: number
-}
 export const revalidate = 0
 
 async function Totais() {
