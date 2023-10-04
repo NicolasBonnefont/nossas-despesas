@@ -5,7 +5,7 @@ import './globals.css';
 export const metadata = {
   title: 'Teu Money - Gestão Financeira Pessoal',
   description: 'Sistema simples de gestão de despesas pessoais.',
-  keywords: "gestão financeira pessoal, gestão de gastos, controle de gastos pessoais, meu gastos, entrada e saida, sistema financeiro, controle de gastos"
+  keywords: "Gestão financeira pessoal, gestão de gastos, controle de gastos pessoais, meu gastos, entrada e saida, sistema financeiro, controle de gastos"
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
