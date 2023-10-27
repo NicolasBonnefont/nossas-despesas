@@ -69,17 +69,13 @@ async function getTotais(): Promise<totaisProps> {
       where: {
         OR: [
           {
+            repete_todos_meses: true,
             email_cliente: email,
+            tipo: 'entrada',
             data_parcela: {
               gte: primeiroDiaDoMes, // Maior ou igual ao primeiro dia do mês atual
               lte: ultimoDiaDoMes,   // Menor ou igual ao último dia do mês atual
             },
-            tipo: 'entrada'
-          },
-          {
-            repete_todos_meses: true,
-            email_cliente: email,
-            tipo: 'entrada'
           }
         ]
 
@@ -94,10 +90,10 @@ async function getTotais(): Promise<totaisProps> {
         tipo: 'entrada',
         email_cliente: email,
         repete_todos_meses: false,
-        created_at: {
+        data_parcela: {
           gte: primeiroDiaDoMes, // Maior ou igual ao primeiro dia do mês atual
           lte: ultimoDiaDoMes,   // Menor ou igual ao último dia do mês atual
-        }
+        },
       }
     })
 
@@ -191,3 +187,4 @@ async function getUmLancamento(id: number): Promise<lancamentos | null> {
 
 
 export { getLancamentos, getTotais, getUmLancamento };
+
