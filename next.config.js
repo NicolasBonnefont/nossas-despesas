@@ -1,6 +1,5 @@
 const nextConfig = {
-  experimental: {
-    serverActions: true,
+  experimental: {    
   },
   images: {
     domains: ['http://localhost:3000/','lh3.googleusercontent.com']
